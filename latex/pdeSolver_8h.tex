@@ -1,0 +1,65 @@
+\hypertarget{pdeSolver_8h}{}\section{pde\+Solver.\+h File Reference}
+\label{pdeSolver_8h}\index{pde\+Solver.\+h@{pde\+Solver.\+h}}
+This graph shows which files directly or indirectly include this file\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}{gera\+\_\+matriz} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
+\begin{DoxyCompactList}\small\item\em Monta a matriz pentadiagonal do SL. \end{DoxyCompactList}\item 
+void \hyperlink{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}{gera\+\_\+vetor\+\_\+b} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
+\begin{DoxyCompactList}\small\item\em Calcula o vetor dos termos independentes B do SL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+matriz@{gera\+\_\+matriz}}
+\index{gera\+\_\+matriz@{gera\+\_\+matriz}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection[{\texorpdfstring{gera\+\_\+matriz(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{gera_matriz(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}void gera\+\_\+matriz (
+\begin{DoxyParamCaption}
+\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
+\end{DoxyParamCaption}
+)}\hypertarget{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}{}\label{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}
+
+
+Monta a matriz pentadiagonal do SL. 
+
+Função que gera a matriz de coeficientes A.
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Ponteiro do Sistema Linear\\
+\hline
+\end{DoxyParams}
+A função libera todos os ponteiros da estrutura do Sistema Linear.
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & é o Sistema Linear\\
+\hline
+\end{DoxyParams}
+Essa função gera a matriz de coeficientes a partir da aproximação de valores da Equação Diferencial Parcial \index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+vetor\+\_\+b@{gera\+\_\+vetor\+\_\+b}}
+\index{gera\+\_\+vetor\+\_\+b@{gera\+\_\+vetor\+\_\+b}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection[{\texorpdfstring{gera\+\_\+vetor\+\_\+b(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{gera_vetor_b(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}void gera\+\_\+vetor\+\_\+b (
+\begin{DoxyParamCaption}
+\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
+\end{DoxyParamCaption}
+)}\hypertarget{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}{}\label{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}
+
+
+Calcula o vetor dos termos independentes B do SL. 
+
+Função que gera o vetor de termos independentes b.
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & Ponteiro do Sistema Linear\\
+\hline
+\end{DoxyParams}
+A função libera todos os ponteiros da estrutura do Sistema Linear.
+
+
+\begin{DoxyParams}{Parameters}
+{\em SL} & é o Sistema Linear\\
+\hline
+\end{DoxyParams}
+Essa função gera o vetor de termos independentes b a partir da aproximação de valores da Equação Diferencial Parcial 

@@ -178,6 +178,32 @@ void gera_vetor_b(SistLinear_t *SL)
     }
 }
 
+void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
+{
+    int k=0;
+    printf("hx: %f\n",hx);
+    printf("hy: %f\n",hy);
+    for(int j = 1; j<=ny;++j)
+    { 
+        for(int i = 1; i<=nx; ++i)
+        {
+            y[k] = hy*j;
+            x[k++] = hx*i;
+        }
+    }
+    printf("K: %d\n",k);
+}
+
+real_t* aloca_vetor(int nx, int ny){
+    int t = nx*ny;
+	real_t *v = (real_t*)malloc(t * sizeof(real_t));
+	
+	if(v)
+		for(int i = 0; i < t; ++i)
+			v[i] = 0.0;
+	return v;
+}
+
 void saida_gnuplot(real_t *R, real_t n, int flagArq, char *arqOut, double tempo, int iter)
 {
     if(flagArq)
@@ -215,12 +241,10 @@ void saida_gnuplot(real_t *R, real_t n, int flagArq, char *arqOut, double tempo,
 
 int main(int argc, char *argv[])
 {
-
     /*=========================== Le os parametros ===========================*/
     int opt;
     char *arqOut = NULL;
     int flagArq = 0, x, y, maxIter;
-    FILE *fp;
 
     const struct option stopcoes[] = {
         {"nx", required_argument, 0, 'x'},
@@ -309,10 +333,53 @@ int main(int argc, char *argv[])
     }
     printf("\n\n");
 
-    int iter;
-    real_t *R = (real_t *)malloc(maxIter * sizeof(real_t));
-    int ret = gaussSeidel(R,SL,maxIter,&iter);
+    Metrica *P;
+    P = alocaMetrica(x,y, maxIter);
+    printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
 
+
+    int ret = gaussSeidel(SL, maxIter, P);
+    printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
+
+    real_t hx = M_PI / SL->nx;
+    real_t hy = M_PI / SL->ny;
+    real_t *vx = aloca_vetor(SL->nx,SL->ny);
+    real_t *vy = aloca_vetor(SL->nx,SL->ny);
+    solucao(hx,hy,vx,vy,SL->ny,SL->nx);
+    printf("\nX:\n");
+    for (i = 0; i < tamLin; i++)
+    {
+        printf("%f ", vx[i]);
+    }
+
+    printf("\nY:\n");
+    for (i = 0; i < tamLin; i++)
+    {
+        printf("%f ", vy[i]);
+    }
+    printf("\nz:\n");
+    for (i = 1; i <= tamLin; i++)
+    {
+        printf("%f ", SL->x[i]);
+    }
+
+    FILE* fp;
+    fp = fopen(arqOut ,"w+");
+
+    if (fp == NULL)
+        printf("Um erro ocorreu ao tentar criar o arquivo.\n");
+    
+    fprintf(fp,"###########\n");
+    for (int i=0; i<tamLin; ++i)
+    {
+        fprintf(fp, "%f %f %f\n",vx[i],vy[i],SL->x[i+1]);
+    }
+    fprintf(fp,"###########\n");
+
+    fclose(fp);
+
+
+/*
     printf("\nX:\n");
     for (i = 1; i <= tamLin; i++)
     {
@@ -321,8 +388,7 @@ int main(int argc, char *argv[])
     printf("\n\n");
     real_t n = normaL2Residuo(SL);
     printf("Norma L2: %f\n", n);
-
-    saida_gnuplot(R,n,flagArq,arqOut,tempo,iter);
+*/
 
     /*===================================================================================*/
 
@@ -340,6 +406,6 @@ int main(int argc, char *argv[])
 /*  
   printf("Gauss Seidel, Norma: %.6g,Tempo: %.5g, Erro: %d\n", norma, tempo_final-tempo_inicial, ret);
 */
-    liberaSistLinear(SL);
+    //liberaSistLinear(SL);
     return 0;
 }

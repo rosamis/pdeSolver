@@ -19,4 +19,6 @@ void gera_matriz(SistLinear_t * SL);
 */
 void gera_vetor_b(SistLinear_t * SL);
 
+void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx);
+
 #endif //__PDESOLVER_H__

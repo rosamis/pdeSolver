@@ -33,8 +33,15 @@ typedef struct {
   unsigned int ny; /**< Quantidade de pontos em y. */
 } SistLinear_t;
 
+typedef struct{
+    double *norma;
+    double mediaTempo;
+    int iter;
+}Metrica;
+
 SistLinear_t* alocaSistLinear (unsigned int nx, unsigned int ny);
+Metrica* alocaMetrica(unsigned int nx, unsigned int ny, int maxIter);
 void inicializaSistLinear (SistLinear_t *SL, int x, int y);
 void liberaSistLinear (SistLinear_t *SL);
-int gaussSeidel (SistLinear_t *SL, int maxIter);
+int gaussSeidel (SistLinear_t *SL, int maxIter, Metrica *P);
 double normaL2Residuo(SistLinear_t *SL);

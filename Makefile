@@ -11,6 +11,8 @@
 
 .PHONY: faxina clean distclean purge all doc
 
+all: $(PROG)
+
 %.o: %.c %.h utils.h pdeSolver.h
 	$(CC) -c $(CFLAGS) $<
 

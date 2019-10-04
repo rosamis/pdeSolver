@@ -14,6 +14,7 @@
 #include <math.h>
 #include <stdlib.h>
 #include "SistemasLineares.h"
+#include "utils.h"
 
 /*!
 	\fn SistLinear_t *alocaSistLinear(unsigned int nx, unsigned int ny)
@@ -46,6 +47,23 @@ SistLinear_t *alocaSistLinear(unsigned int nx, unsigned int ny)
 		}
 	}
 	return SL;
+}
+
+Metrica *alocaMetrica(unsigned int nx, unsigned int ny, int maxIter){
+	Metrica *P = (Metrica *)malloc(sizeof(Metrica));
+	int t = maxIter;
+	if(P){
+		P->norma = (double*)malloc(t * sizeof(double));
+		if(!(P->norma)){
+			free(P);
+		} 
+		for(int i = 0; i <= t; ++i){
+			P->norma[i] = 0.0;
+		}
+		P->iter = 0;
+		P->mediaTempo = 0.0;
+	}
+	return P;
 }
 
 /*!
@@ -117,10 +135,10 @@ void liberaSistLinear(SistLinear_t *SL)
 	· Erro (-2) ATINGIU_MAX_ITERACOES: Ocorre quando o número máximo de iterações, passado por parâmetro, é atingido
 	*
 */
-int gaussSeidel(real_t *residuo_iteracoes, SistLinear_t *SL, int maxIter, int *iter)
+int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 {
 	int i, j, k, l, tam, nx, ny;
-	real_t xk, *Xi, *Bi, *Dp, *Di, *Ds, *Dia, *Dsa, somatorio, norma, diff;
+	real_t xk, *Xi, *Bi, *Dp, *Di, *Ds, *Dia, *Dsa, somatorio, norma, diff, normaL2;
 
 	nx = SL->nx;
 	ny = SL->ny;
@@ -134,10 +152,9 @@ int gaussSeidel(real_t *residuo_iteracoes, SistLinear_t *SL, int maxIter, int *i
 	Bi = SL->b;
 	tam = SL->nx * SL->ny;
 
-	double tempo;
+	double tempo=0.0;
 	double somaTempo = 0.0;
 
-	*iter = 1;
 	k = 1;
 	do
 	{
@@ -158,11 +175,11 @@ int gaussSeidel(real_t *residuo_iteracoes, SistLinear_t *SL, int maxIter, int *i
 		//equações centrais
 		for (i = 2; i < tam; ++i)
 		{
-			if (Dp[i] == 0)
+			/*if (Dp[i] == 0)
 			{
 				fprintf(stderr, "Erro (-1)\n");
 				return -1;
-			}
+			}*/
 			if (i > nx)
 			{
 				xk = (Bi[i] - Dia[i] * Xi[i - nx] - Di[i] * Xi[i - 1] - Ds[i] * Xi[i + 1] - Dsa[i] * Xi[i + nx]) / Dp[i];
@@ -184,15 +201,19 @@ int gaussSeidel(real_t *residuo_iteracoes, SistLinear_t *SL, int maxIter, int *i
 		Xi[i] = xk;
 		//printf("Nfora: %.3f\n", norma);
 
-		++*iter;
 		++k;
-		tempo = timestamp() - tempo;
-		somaTempo += tempo;
+		double tempo1 = timestamp();
+		double tempoFim = tempo1 - tempo;
+		somaTempo += tempoFim;
+		//P->norma[k] = normaL2Residuo(SL);
+
 	} while (k < maxIter && norma > EPS);
 	//printf("K: %d\n", k);
 	//printf("N fim: %.3f\n", norma);
-	double mediaTempo = somaTempo / k;
-	printf("Tempo média: %f\n",mediaTempo );
+	double mTempo = somaTempo / k;
+	P->mediaTempo = mTempo;
+	P->iter = k;
+	printf("Tempo média: %f\n",mTempo );
 
 
 	if (k >= maxIter)
@@ -239,7 +260,7 @@ double normaL2Residuo(SistLinear_t *SL)
 	}
 	//primeira equação
 	i = 1;
-	R[i] =  Bi[i] - (Dp[i] * Xi[i] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
+	R[i] = Bi[i] - (Dp[i] * Xi[i] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
 	//printf("\nR1: %.3f\n",R[i]);
 
 	//equações centrais

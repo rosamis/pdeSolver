@@ -1,3 +1,5 @@
+#ifndef __SISTLINEAR_H__
+#define __SISTLINEAR_H__
 /**
  * \file SistemasLineares.h
  * \author Jackson Borguezani & Roberta Tomigian
@@ -13,10 +15,11 @@
 #include <sys/time.h>
 #include <math.h>
 #include "utils.h"
+#define EPS 1.0e-4
+
+/*============================= Estruturas de Dados =============================*/
 
 typedef double real_t;
-
-#define EPS 1.0e-4
 
 /*! \struct SistLinear_t
     \brief Estrutura de dados do Sistema Linear Pentadiagonal
@@ -33,11 +36,16 @@ typedef struct {
   unsigned int ny; /**< Quantidade de pontos em y. */
 } SistLinear_t;
 
+/*! \struct Metrica
+    \brief Estrutura de dados das métricas usadas na escrita do arquivo
+*/
 typedef struct{
-    double *norma;
-    double mediaTempo;
-    int iter;
+    double *norma; /**< Vetor das normas de cada iteração do Gauss-Seidel */
+    double mediaTempo; /**< Média de tempo de cada iteração do Gauss-Seidel */
+    int iter; /**< Quantidade total de iterações feitas no Gauss-Seidel */
 }Metrica;
+
+/*=========================== Funções do Sistema Linear ===========================*/
 
 SistLinear_t* alocaSistLinear (unsigned int nx, unsigned int ny);
 Metrica* alocaMetrica(unsigned int nx, unsigned int ny, int maxIter);
@@ -45,3 +53,5 @@ void inicializaSistLinear (SistLinear_t *SL, int x, int y);
 void liberaSistLinear (SistLinear_t *SL);
 int gaussSeidel (SistLinear_t *SL, int maxIter, Metrica *P);
 double normaL2Residuo(SistLinear_t *SL);
+
+#endif //__SISTLINEAR_H__

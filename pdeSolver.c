@@ -26,41 +26,34 @@
 #define M_PI 3.14159265358979323846
 #define fronteira_d 0
 #define fronteira_e 0
-//#define EPS 1.0e-4
 
 real_t quadrado(real_t p)
 {
     return p*p;
 }
-real_t gera_d_principal(real_t hx, real_t hy)
+real_t gera_d_principal(real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado)
 {
-    real_t hx_quadrado = quadrado(hx);
-    real_t hy_quadrado = quadrado(hy);
-    real_t pi_quadrado = quadrado(M_PI);
+
     return 4 * hy_quadrado + 4 * hx_quadrado + 8 * pi_quadrado * hx_quadrado* hy_quadrado;
 }
 
-real_t gera_d_superior(real_t hx, real_t hy)
+real_t gera_d_superior(real_t hx, real_t hy_quadrado)
 {
-    real_t hy_quadrado = quadrado(hy);
     return hx * hy_quadrado - 2 * hy_quadrado;
 }
 
-real_t gera_d_inferior(real_t hx, real_t hy)
+real_t gera_d_inferior(real_t hx, real_t hy_quadrado)
 {
-    real_t hy_quadrado = quadrado(hy);
     return -(2 * hy_quadrado) - hx * hy_quadrado;
 }
 
-real_t gera_ds_afastada(real_t hx, real_t hy)
+real_t gera_ds_afastada(real_t hx_quadrado, real_t hy)
 {
-    real_t hx_quadrado = quadrado(hx);
     return hx_quadrado * hy - 2 * hx_quadrado;
 }
 
-real_t gera_di_afastada(real_t hx, real_t hy)
+real_t gera_di_afastada(real_t hx_quadrado, real_t hy)
 {
-    real_t hx_quadrado = quadrado(hx);
     return -2 * hx_quadrado - hx_quadrado * hy;
 }
 
@@ -104,7 +97,7 @@ real_t b_limite_direita(real_t hx, real_t hy_quadrado)
 	*
 	\param SL: Ponteiro do Sistema Linear
 	*
-	\details A função libera todos os ponteiros da estrutura do Sistema Linear.
+	\details Essa função gera a matriz de coeficientes a partir da aproximação de valores da Equação Diferencial Parcial
 	*
 */
 void gera_matriz(SistLinear_t *SL)
@@ -112,23 +105,26 @@ void gera_matriz(SistLinear_t *SL)
     int k;
     real_t hx = M_PI / SL->nx;
     real_t hy = M_PI / SL->ny;
+    real_t hx_quadrado = quadrado(hx);
+    real_t hy_quadrado = quadrado(hy);
+    real_t pi_quadrado = quadrado(M_PI);
 
     int tamLin = SL->nx * SL->ny;
 
     for (k = 1; k <= tamLin; k++) // Diagonal Principal
-        SL->dp[k] = gera_d_principal(hx,hy);
+        SL->dp[k] = gera_d_principal(hx_quadrado,hy_quadrado,pi_quadrado);
 
     for (k = 1; k <= tamLin - 1; k++) // Diagonal Superior
-        SL->ds[k] = gera_d_superior(hx,hy);
+        SL->ds[k] = gera_d_superior(hx,hy_quadrado);
 
     for (k = 2; k <= tamLin; k++) // Diagonal Inferior
-        SL->di[k] = gera_d_inferior(hx,hy);
+        SL->di[k] = gera_d_inferior(hx,hy_quadrado);
 
     for (k = 1; k <= tamLin - SL->nx; k++) // Diagonal Superior Afastada
-        SL->dsa[k] = gera_ds_afastada(hx,hy);
+        SL->dsa[k] = gera_ds_afastada(hx_quadrado,hy);
 
     for (k = SL->ny + 1; k <= tamLin; k++) // Diagonal Inferior Afastada
-        SL->dia[k] = gera_di_afastada(hx,hy);
+        SL->dia[k] = gera_di_afastada(hx_quadrado,hy);
 }
 
 /*!
@@ -138,7 +134,7 @@ void gera_matriz(SistLinear_t *SL)
 	*
 	\param SL: Ponteiro do Sistema Linear
 	*
-	\details A função libera todos os ponteiros da estrutura do Sistema Linear.
+	\details Essa função gera o vetor de termos independentes b a partir da aproximação de valores da Equação Diferencial Parcial
 	*
 */
 void gera_vetor_b(SistLinear_t *SL)
@@ -178,23 +174,55 @@ void gera_vetor_b(SistLinear_t *SL)
     }
 }
 
+/*!
+	\fn void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
+	*
+	\brief Essa função calcula os valores dos eixos x e y da malha
+	*
+	\param nx: Número de pontos a serem calculados no eixo x
+	*
+	\param ny: Número de pontos a serem calculados no eixo y
+	*
+	\param hx: 
+	*
+	\param hy: 
+	*
+	\param y: Vetor de valores em y
+	*
+	\param x: Vetor de valores em x
+	*
+*/
 void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
 {
     int k=0;
-    printf("hx: %f\n",hx);
-    printf("hy: %f\n",hy);
+    //printf("hx: %f\n",hx);
+    //printf("hy: %f\n",hy);
     for(int j = 1; j<=ny;++j)
     { 
         for(int i = 1; i<=nx; ++i)
         {
             y[k] = hy*j;
-            x[k++] = hx*i;
+            x[k] = hx*i;
+            k++;
         }
     }
-    printf("K: %d\n",k);
+    //printf("K: %d\n",k);
 }
 
-real_t* aloca_vetor(int nx, int ny){
+/*!
+	\fn real_t* aloca_vetor(int nx, int ny)
+	*
+	\brief Aloca e inicializa vetor 
+	*
+	\param nx: Número de pontos a serem calculados no eixo x
+	*
+	\param ny: Número de pontos a serem calculados no eixo y
+	*
+	\details Essa função gera vetor de dimensão nx*ny
+	*
+*/
+real_t* aloca_vetor(int nx, int ny)
+{
     int t = nx*ny;
 	real_t *v = (real_t*)malloc(t * sizeof(real_t));
 	
@@ -204,39 +232,50 @@ real_t* aloca_vetor(int nx, int ny){
 	return v;
 }
 
-void saida_gnuplot(real_t *R, real_t n, int flagArq, char *arqOut, double tempo, int iter)
+/*!
+	\fn void saida_gnuplot(real_t *R, real_t n, int flagArq, char *arqOut, double tempo, int iter)
+	*
+	\brief Gera a saída da solução no formato aceito pelo gnuplot
+	*
+	\param nx: Número de pontos a serem calculados no eixo x
+	*
+	\param ny: Número de pontos a serem calculados no eixo y
+	*
+	\details Essa função gera vetor de dimensão nx*ny
+	*
+*/
+void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
 {
+    real_t hx = M_PI / SL->nx;
+    real_t hy = M_PI / SL->ny;
+    real_t *vx = aloca_vetor(SL->nx,SL->ny);
+    real_t *vy = aloca_vetor(SL->nx,SL->ny);
+    solucao(hx,hy,vx,vy,SL->ny,SL->nx);
+    FILE* fp;
     if(flagArq)
     {
-        FILE* fp;
         fp = fopen(arqOut ,"w+");
-
         if (fp == NULL)
             printf("Um erro ocorreu ao tentar criar o arquivo.\n");
+    }else
+        fp = stdout;
         
-        fprintf(fp,"###########\n");
-        fprintf(fp,"# Tempo Método GS: %f\n", tempo/iter);
-        fprintf(fp,"#\n");
-        fprintf(fp,"# Norma L2 do Residuo\n");
-        for (int i=1; i<=iter; ++i)
-        {
-            fprintf(fp, "# i = %d: %f\n",i,R[i]);
-        }
-        fprintf(fp,"###########\n");
+    fprintf(fp,"###########\n");
+    fprintf(fp,"# Tempo Método GS: %f\n", P->mediaTempo);
+    fprintf(fp,"#\n");
+    fprintf(fp,"# Norma L2 do Residuo\n");
 
-        fclose(fp);
+    for (int i=1; i<=P->iter; ++i)
+        fprintf(fp, "# i = %d: %f\n",i,P->norma[i]);
 
-    }else{
-        printf("###########\n");
-        printf("# Tempo Método GS: %f\n", tempo/iter);
-        printf("#\n");
-        printf("# Norma L2 do Residuo\n");
-        for (int i=1; i<=iter; ++i)
-        {
-            printf("# i = %d: %f\n",i,R[i]);
-        }      
-        printf("###########\n");
+    fprintf(fp,"#\n");
+    fprintf(fp,"###########\n");
+
+    for (int i=0;i<SL->nx*SL->ny;i++){
+        fprintf(fp, "%f %f %f\n",vx[i],vy[i],SL->x[i+1]);
     }
+
+    fclose(fp);   
 }
 
 int main(int argc, char *argv[])
@@ -332,51 +371,36 @@ int main(int argc, char *argv[])
         printf("%.2f ", SL->b[i]);
     }
     printf("\n\n");
-
+    /*=========================== Resolve o SL ========================*/
     Metrica *P;
-    P = alocaMetrica(x,y, maxIter);
+    P = alocaMetrica(x,y,maxIter);
     printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
 
-
-    int ret = gaussSeidel(SL, maxIter, P);
+    int ret = gaussSeidel(SL,maxIter,P);
     printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
 
-    real_t hx = M_PI / SL->nx;
-    real_t hy = M_PI / SL->ny;
-    real_t *vx = aloca_vetor(SL->nx,SL->ny);
-    real_t *vy = aloca_vetor(SL->nx,SL->ny);
-    solucao(hx,hy,vx,vy,SL->ny,SL->nx);
-    printf("\nX:\n");
-    for (i = 0; i < tamLin; i++)
-    {
-        printf("%f ", vx[i]);
-    }
+    /*=========================== Monta saida do programa ========================*/
 
-    printf("\nY:\n");
-    for (i = 0; i < tamLin; i++)
-    {
-        printf("%f ", vy[i]);
-    }
-    printf("\nz:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%f ", SL->x[i]);
-    }
+    saida_gnuplot(P,flagArq,arqOut,SL);
 
-    FILE* fp;
-    fp = fopen(arqOut ,"w+");
 
-    if (fp == NULL)
-        printf("Um erro ocorreu ao tentar criar o arquivo.\n");
-    
-    fprintf(fp,"###########\n");
-    for (int i=0; i<tamLin; ++i)
-    {
-        fprintf(fp, "%f %f %f\n",vx[i],vy[i],SL->x[i+1]);
-    }
-    fprintf(fp,"###########\n");
+    //printf("\nX:\n");
+    //for (i = 0; i < tamLin; i++)
+    //{
+    //    printf("%f ", vx[i]);
+    //}
 
-    fclose(fp);
+    //printf("\nY:\n");
+    //for (i = 0; i < tamLin; i++)
+    //{
+    //    printf("%f ", vy[i]);
+    //}
+    //printf("\nz:\n");
+    //for (i = 1; i <= tamLin; i++)
+    //{
+    //    printf("%f ", SL->x[i]);
+    //}
+
 
 
 /*

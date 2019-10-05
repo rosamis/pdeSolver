@@ -2,7 +2,17 @@
 ## Objetivo
 O objetivo deste trabalho é implementar um programa para calcular a solução discreta para uma Equação Diferencial Parcial com duas variáveis indepententes utilizando Diferenças Finitas centrais de primeira ordem e o método de Gauss-Seidel.
 ## Especificação
-O trabalho consiste em calcular a solução discreta, utilizando Diferenças Finitas Centrais e o Método de Gauss-Seidel, para a seguinte Equação Diferencial Parcial: (colocar img)
+O trabalho consiste em calcular a solução discreta, utilizando Diferenças Finitas Centrais e o Método de Gauss-Seidel, para a seguinte Equação Diferencial Parcial: 
+![](img/1.png)
+onde:
+![](img/2.png)
+![](img/3.png)
+O domínio é definido por: ![](img/4.png)
+Nas fronteiras:
+![](img/5.png)
+![](img/6.png)
+![](img/7.png)
+![](img/8.png)
 ## Execução
 O pacote de software a ser construído deve gerar um executável chamado pdeSolver, que deve ser invocado da seguinte forma:
       ./pdeSolver -nx <nx> -ny <ny> -i <maxIter> -o arquivo_saida

@@ -13,6 +13,13 @@ Nas fronteiras:
 ![](img/6.png)
 ![](img/7.png)
 ![](img/8.png)
+
+A discretização do domínio deve ser feita em uma malha com espaçamento entre os pontos (0<hx,hy<pi) calculados a partir do número de pontos em cada dimensão () dados como parâmetro do programa.
+
+    Escolha uma estrutura de dados eficiente para representar o Sistema Linear resultante;
+    Escolha um layout eficiente para as variáveis e termos independentes do seu sistema;
+    Use um vetor nulo como estimativa inicial para a solução;
+
 ## Execução
 O pacote de software a ser construído deve gerar um executável chamado pdeSolver, que deve ser invocado da seguinte forma:
       ./pdeSolver -nx <nx> -ny <ny> -i <maxIter> -o arquivo_saida

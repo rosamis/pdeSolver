@@ -1,65 +1,332 @@
 \hypertarget{pdeSolver_8h}{}\section{pde\+Solver.\+h File Reference}
 \label{pdeSolver_8h}\index{pde\+Solver.\+h@{pde\+Solver.\+h}}
 This graph shows which files directly or indirectly include this file\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=148pt]{pdeSolver_8h__dep__incl}
+\end{center}
+\end{figure}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_ad88327faf5fd74f059692310c90e5b92}{quadrado} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} p)
+\begin{DoxyCompactList}\small\item\em Função que calcula o quadrado de um número. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a41269b22ab07c9e90c255a878f6c1841}{gera\+\_\+d\+\_\+principal} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} pi\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna a fórmula usada no calculo dos coeficientes da diagonal principal. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a1b1d936e15b9dd2a351d11d610f04ffc}{gera\+\_\+d\+\_\+superior} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a40829110e5ca00a23d4a8600b95d8c73}{gera\+\_\+d\+\_\+inferior} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna a fórmula usada no calculo dos coeficientes da diagonal inferior. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_ad8792ef5fa468fdd0804165e09f60ec1}{gera\+\_\+ds\+\_\+afastada} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy)
+\begin{DoxyCompactList}\small\item\em Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior afastada. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a39b450e603ce206065556042718c31a2}{gera\+\_\+di\+\_\+afastada} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy)
+\item 
 void \hyperlink{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}{gera\+\_\+matriz} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
 \begin{DoxyCompactList}\small\item\em Monta a matriz pentadiagonal do SL. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a6baa007ee7bf7e4120e7b5d6b645fbdf}{funcao\+\_\+f} (int i, int j, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} pi\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna a fórmula usada no calculo da função principal. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a889ed1fd5fcb065e1169b88bfa889f0d}{b\+\_\+principal} (int i, int j, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} pi\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna o calculo da função das constantes nos termos independentes de b. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_a02c765de585c55cb47bd611789a5ab5b}{b\+\_\+limite\+\_\+superior} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy, int i, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} pi\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna o calculo da função das constantes dos termos independentes de b no limite superior. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_ac7c963004dc30bdf5b32756de817f28a}{b\+\_\+limite\+\_\+inferior} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx\+\_\+quadrado, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy, int i, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} pi\+\_\+quadrado)
+\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_ad17bead63455b80544cdd007eb403412}{b\+\_\+limite\+\_\+esquerda} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna o calculo da função das constantes dos termos independentes de b no limite à esquerda. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} \hyperlink{pdeSolver_8h_afbc1ac13d37824ea86eecf48e994d191}{b\+\_\+limite\+\_\+direita} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy\+\_\+quadrado)
+\begin{DoxyCompactList}\small\item\em Função que retorna o calculo da função das constantes dos termos independentes de b no limite à direita. \end{DoxyCompactList}\item 
 void \hyperlink{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}{gera\+\_\+vetor\+\_\+b} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
-\begin{DoxyCompactList}\small\item\em Calcula o vetor dos termos independentes B do SL. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\begin{DoxyCompactList}\small\item\em Calcula o vetor dos termos independentes B do SL. \end{DoxyCompactList}\item 
+void \hyperlink{pdeSolver_8h_a7b2dfad9dc1b2ff50aac0731e38faa40}{solucao} (\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hx, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} hy, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} $\ast$x, \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} $\ast$y, int ny, int nx)
+\begin{DoxyCompactList}\small\item\em Essa função calcula os valores dos eixos x e y da malha. \end{DoxyCompactList}\item 
+\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} $\ast$ \hyperlink{pdeSolver_8h_aef4b26199140c8d62efd8bcb29ce2347}{aloca\+\_\+vetor} (int nx, int ny)
+\begin{DoxyCompactList}\small\item\em Aloca e inicializa vetor. \end{DoxyCompactList}\item 
+void \hyperlink{pdeSolver_8h_a564d058f86f6f90aefe804cd92604512}{saida\+\_\+gnuplot} (\hyperlink{structMetrica}{Metrica} $\ast$P, int flag\+Arq, char $\ast$arq\+Out, \hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+\begin{DoxyAuthor}{Author}
+Jackson Borguezani \& Roberta Tomigian 
+\end{DoxyAuthor}
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{pdeSolver_8h_aef4b26199140c8d62efd8bcb29ce2347}\label{pdeSolver_8h_aef4b26199140c8d62efd8bcb29ce2347}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!aloca\+\_\+vetor@{aloca\+\_\+vetor}}
+\index{aloca\+\_\+vetor@{aloca\+\_\+vetor}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{aloca\+\_\+vetor()}{aloca\_vetor()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}$\ast$ aloca\+\_\+vetor (\begin{DoxyParamCaption}\item[{int}]{nx,  }\item[{int}]{ny }\end{DoxyParamCaption})}
+
+
+
+Aloca e inicializa vetor. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & Número de pontos a serem calculados no eixo x\\
+\hline
+{\em ny} & Número de pontos a serem calculados no eixo y\\
+\hline
+\end{DoxyParams}
+Essa função gera vetor de dimensão nx$\ast$ny \mbox{\Hypertarget{pdeSolver_8h_afbc1ac13d37824ea86eecf48e994d191}\label{pdeSolver_8h_afbc1ac13d37824ea86eecf48e994d191}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!b\+\_\+limite\+\_\+direita@{b\+\_\+limite\+\_\+direita}}
+\index{b\+\_\+limite\+\_\+direita@{b\+\_\+limite\+\_\+direita}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{b\+\_\+limite\+\_\+direita()}{b\_limite\_direita()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} b\+\_\+limite\+\_\+direita (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o calculo da função das constantes dos termos independentes de b no limite à direita. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado\\
+\hline
+{\em hx} & Deslocamento no eixo x \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_ad17bead63455b80544cdd007eb403412}\label{pdeSolver_8h_ad17bead63455b80544cdd007eb403412}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!b\+\_\+limite\+\_\+esquerda@{b\+\_\+limite\+\_\+esquerda}}
+\index{b\+\_\+limite\+\_\+esquerda@{b\+\_\+limite\+\_\+esquerda}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{b\+\_\+limite\+\_\+esquerda()}{b\_limite\_esquerda()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} b\+\_\+limite\+\_\+esquerda (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o calculo da função das constantes dos termos independentes de b no limite à esquerda. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado\\
+\hline
+{\em hx} & Deslocamento no eixo x \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_ac7c963004dc30bdf5b32756de817f28a}\label{pdeSolver_8h_ac7c963004dc30bdf5b32756de817f28a}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!b\+\_\+limite\+\_\+inferior@{b\+\_\+limite\+\_\+inferior}}
+\index{b\+\_\+limite\+\_\+inferior@{b\+\_\+limite\+\_\+inferior}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{b\+\_\+limite\+\_\+inferior()}{b\_limite\_inferior()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} b\+\_\+limite\+\_\+inferior (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy,  }\item[{int}]{i,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{pi\+\_\+quadrado }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pdeSolver_8h_a02c765de585c55cb47bd611789a5ab5b}\label{pdeSolver_8h_a02c765de585c55cb47bd611789a5ab5b}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!b\+\_\+limite\+\_\+superior@{b\+\_\+limite\+\_\+superior}}
+\index{b\+\_\+limite\+\_\+superior@{b\+\_\+limite\+\_\+superior}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{b\+\_\+limite\+\_\+superior()}{b\_limite\_superior()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} b\+\_\+limite\+\_\+superior (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy,  }\item[{int}]{i,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{pi\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o calculo da função das constantes dos termos independentes de b no limite superior. 
+
+Função que retorna o calculo da função das constantes dos termos independentes de b no limite inferior.
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & o valor de i\\
+\hline
+{\em pi\+\_\+quadrado} & o valor de pi\+\_\+quadrado ao quadrado\\
+\hline
+{\em hx\+\_\+quadrado} & Deslocamento no eixo x ao quadrado\\
+\hline
+{\em hy} & Deslocamento no eixo y \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a889ed1fd5fcb065e1169b88bfa889f0d}\label{pdeSolver_8h_a889ed1fd5fcb065e1169b88bfa889f0d}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!b\+\_\+principal@{b\+\_\+principal}}
+\index{b\+\_\+principal@{b\+\_\+principal}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{b\+\_\+principal()}{b\_principal()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} b\+\_\+principal (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{pi\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna o calculo da função das constantes nos termos independentes de b. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & o valor de i\\
+\hline
+{\em j} & o valor de j\\
+\hline
+{\em pi\+\_\+quadrado} & o valor de pi\+\_\+quadrado ao quadrado\\
+\hline
+{\em hx\+\_\+quadrado} & Deslocamento no eixo x ao quadrado\\
+\hline
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a6baa007ee7bf7e4120e7b5d6b645fbdf}\label{pdeSolver_8h_a6baa007ee7bf7e4120e7b5d6b645fbdf}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!funcao\+\_\+f@{funcao\+\_\+f}}
+\index{funcao\+\_\+f@{funcao\+\_\+f}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{funcao\+\_\+f()}{funcao\_f()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} funcao\+\_\+f (\begin{DoxyParamCaption}\item[{int}]{i,  }\item[{int}]{j,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{pi\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna a fórmula usada no calculo da função principal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em i} & o valor de i\\
+\hline
+{\em j} & o valor de j\\
+\hline
+{\em pi\+\_\+quadrado} & o valor de pi\+\_\+quadrado ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a40829110e5ca00a23d4a8600b95d8c73}\label{pdeSolver_8h_a40829110e5ca00a23d4a8600b95d8c73}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+d\+\_\+inferior@{gera\+\_\+d\+\_\+inferior}}
+\index{gera\+\_\+d\+\_\+inferior@{gera\+\_\+d\+\_\+inferior}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{gera\+\_\+d\+\_\+inferior()}{gera\_d\_inferior()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} gera\+\_\+d\+\_\+inferior (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna a fórmula usada no calculo dos coeficientes da diagonal inferior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hx} & Deslocamento no eixo x\\
+\hline
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a41269b22ab07c9e90c255a878f6c1841}\label{pdeSolver_8h_a41269b22ab07c9e90c255a878f6c1841}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+d\+\_\+principal@{gera\+\_\+d\+\_\+principal}}
+\index{gera\+\_\+d\+\_\+principal@{gera\+\_\+d\+\_\+principal}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{gera\+\_\+d\+\_\+principal()}{gera\_d\_principal()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} gera\+\_\+d\+\_\+principal (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{pi\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna a fórmula usada no calculo dos coeficientes da diagonal principal. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hx\+\_\+quadrado} & Deslocamento no eixo x ao quadrado\\
+\hline
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado\\
+\hline
+{\em pi\+\_\+quadrado} & o valor de pi ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a1b1d936e15b9dd2a351d11d610f04ffc}\label{pdeSolver_8h_a1b1d936e15b9dd2a351d11d610f04ffc}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+d\+\_\+superior@{gera\+\_\+d\+\_\+superior}}
+\index{gera\+\_\+d\+\_\+superior@{gera\+\_\+d\+\_\+superior}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{gera\+\_\+d\+\_\+superior()}{gera\_d\_superior()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} gera\+\_\+d\+\_\+superior (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy\+\_\+quadrado }\end{DoxyParamCaption})}
+
+
+
+Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em hx} & Deslocamento no eixo x\\
+\hline
+{\em hy\+\_\+quadrado} & Deslocamento no eixo y ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a39b450e603ce206065556042718c31a2}\label{pdeSolver_8h_a39b450e603ce206065556042718c31a2}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+di\+\_\+afastada@{gera\+\_\+di\+\_\+afastada}}
+\index{gera\+\_\+di\+\_\+afastada@{gera\+\_\+di\+\_\+afastada}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{gera\+\_\+di\+\_\+afastada()}{gera\_di\_afastada()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} gera\+\_\+di\+\_\+afastada (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pdeSolver_8h_ad8792ef5fa468fdd0804165e09f60ec1}\label{pdeSolver_8h_ad8792ef5fa468fdd0804165e09f60ec1}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+ds\+\_\+afastada@{gera\+\_\+ds\+\_\+afastada}}
+\index{gera\+\_\+ds\+\_\+afastada@{gera\+\_\+ds\+\_\+afastada}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{gera\+\_\+ds\+\_\+afastada()}{gera\_ds\_afastada()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} gera\+\_\+ds\+\_\+afastada (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx\+\_\+quadrado,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy }\end{DoxyParamCaption})}
+
+
+
+Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior afastada. 
+
+Função que retorna a fórmula usada no calculo dos coeficientes da diagonal inferior afastada.
+
+
+\begin{DoxyParams}{Parameters}
+{\em hy} & Deslocamento no eixo y\\
+\hline
+{\em hx\+\_\+quadrado} & Deslocamento no eixo x ao quadrado \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}\label{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}} 
 \index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+matriz@{gera\+\_\+matriz}}
 \index{gera\+\_\+matriz@{gera\+\_\+matriz}!pde\+Solver.\+h@{pde\+Solver.\+h}}
-\subsubsection[{\texorpdfstring{gera\+\_\+matriz(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{gera_matriz(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}void gera\+\_\+matriz (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
-\end{DoxyParamCaption}
-)}\hypertarget{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}{}\label{pdeSolver_8h_a1c0f6eee3572973fe263b0125a72b889}
+\subsubsection{\texorpdfstring{gera\+\_\+matriz()}{gera\_matriz()}}
+{\footnotesize\ttfamily void gera\+\_\+matriz (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL }\end{DoxyParamCaption})}
+
 
 
 Monta a matriz pentadiagonal do SL. 
 
-Função que gera a matriz de coeficientes A.
-
 
 \begin{DoxyParams}{Parameters}
 {\em SL} & Ponteiro do Sistema Linear\\
 \hline
 \end{DoxyParams}
-A função libera todos os ponteiros da estrutura do Sistema Linear.
-
-
-\begin{DoxyParams}{Parameters}
-{\em SL} & é o Sistema Linear\\
-\hline
-\end{DoxyParams}
-Essa função gera a matriz de coeficientes a partir da aproximação de valores da Equação Diferencial Parcial \index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+vetor\+\_\+b@{gera\+\_\+vetor\+\_\+b}}
+Essa função gera a matriz de coeficientes a partir da aproximação de valores da Equação Diferencial Parcial \mbox{\Hypertarget{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}\label{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!gera\+\_\+vetor\+\_\+b@{gera\+\_\+vetor\+\_\+b}}
 \index{gera\+\_\+vetor\+\_\+b@{gera\+\_\+vetor\+\_\+b}!pde\+Solver.\+h@{pde\+Solver.\+h}}
-\subsubsection[{\texorpdfstring{gera\+\_\+vetor\+\_\+b(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{gera_vetor_b(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}void gera\+\_\+vetor\+\_\+b (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
-\end{DoxyParamCaption}
-)}\hypertarget{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}{}\label{pdeSolver_8h_a4959ff3519b19f59fb4fc2c62e658d30}
+\subsubsection{\texorpdfstring{gera\+\_\+vetor\+\_\+b()}{gera\_vetor\_b()}}
+{\footnotesize\ttfamily void gera\+\_\+vetor\+\_\+b (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL }\end{DoxyParamCaption})}
+
 
 
 Calcula o vetor dos termos independentes B do SL. 
 
-Função que gera o vetor de termos independentes b.
-
 
 \begin{DoxyParams}{Parameters}
 {\em SL} & Ponteiro do Sistema Linear\\
 \hline
 \end{DoxyParams}
-A função libera todos os ponteiros da estrutura do Sistema Linear.
+Essa função gera o vetor de termos independentes b a partir da aproximação de valores da Equação Diferencial Parcial \mbox{\Hypertarget{pdeSolver_8h_ad88327faf5fd74f059692310c90e5b92}\label{pdeSolver_8h_ad88327faf5fd74f059692310c90e5b92}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!quadrado@{quadrado}}
+\index{quadrado@{quadrado}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{quadrado()}{quadrado()}}
+{\footnotesize\ttfamily \hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} quadrado (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{p }\end{DoxyParamCaption})}
+
+
+
+Função que calcula o quadrado de um número. 
 
 
 \begin{DoxyParams}{Parameters}
-{\em SL} & é o Sistema Linear\\
+{\em p} & o valor a ser calculado \\
 \hline
 \end{DoxyParams}
-Essa função gera o vetor de termos independentes b a partir da aproximação de valores da Equação Diferencial Parcial 
+\mbox{\Hypertarget{pdeSolver_8h_a564d058f86f6f90aefe804cd92604512}\label{pdeSolver_8h_a564d058f86f6f90aefe804cd92604512}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!saida\+\_\+gnuplot@{saida\+\_\+gnuplot}}
+\index{saida\+\_\+gnuplot@{saida\+\_\+gnuplot}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{saida\+\_\+gnuplot()}{saida\_gnuplot()}}
+{\footnotesize\ttfamily void saida\+\_\+gnuplot (\begin{DoxyParamCaption}\item[{\hyperlink{structMetrica}{Metrica} $\ast$}]{P,  }\item[{int}]{flag\+Arq,  }\item[{char $\ast$}]{arq\+Out,  }\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL }\end{DoxyParamCaption})}
+
+\mbox{\Hypertarget{pdeSolver_8h_a7b2dfad9dc1b2ff50aac0731e38faa40}\label{pdeSolver_8h_a7b2dfad9dc1b2ff50aac0731e38faa40}} 
+\index{pde\+Solver.\+h@{pde\+Solver.\+h}!solucao@{solucao}}
+\index{solucao@{solucao}!pde\+Solver.\+h@{pde\+Solver.\+h}}
+\subsubsection{\texorpdfstring{solucao()}{solucao()}}
+{\footnotesize\ttfamily void solucao (\begin{DoxyParamCaption}\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hx,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t}}]{hy,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} $\ast$}]{x,  }\item[{\hyperlink{SistemasLineares_8h_a0d00e2b3dfadee81331bbb39068570c4}{real\+\_\+t} $\ast$}]{y,  }\item[{int}]{ny,  }\item[{int}]{nx }\end{DoxyParamCaption})}
+
+
+
+Essa função calcula os valores dos eixos x e y da malha. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & Número de pontos a serem calculados no eixo x\\
+\hline
+{\em ny} & Número de pontos a serem calculados no eixo y\\
+\hline
+{\em hx} & Deslocamento no eixo x\\
+\hline
+{\em hy} & Deslocamento no eixo y\\
+\hline
+{\em y} & Vetor de valores em y\\
+\hline
+{\em x} & Vetor de valores em x \\
+\hline
+\end{DoxyParams}

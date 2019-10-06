@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../pdeSolver_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'pdeSolver.c']]]
+  ['inicializasistlinear',['inicializaSistLinear',['../SistemasLineares_8c.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c']]]
 ];

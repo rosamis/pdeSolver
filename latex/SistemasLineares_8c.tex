@@ -1,22 +1,31 @@
 \hypertarget{SistemasLineares_8c}{}\section{Sistemas\+Lineares.\+c File Reference}
 \label{SistemasLineares_8c}\index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-{\ttfamily \#include $<$stdio.\+h$>$}\\*
-{\ttfamily \#include $<$math.\+h$>$}\\*
-{\ttfamily \#include $<$stdlib.\+h$>$}\\*
-{\ttfamily \#include \char`\"{}Sistemas\+Lineares.\+h\char`\"{}}\\*
+{\ttfamily \#include $<$stdio.\+h$>$}\newline
+{\ttfamily \#include $<$math.\+h$>$}\newline
+{\ttfamily \#include $<$stdlib.\+h$>$}\newline
+{\ttfamily \#include \char`\"{}Sistemas\+Lineares.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}utils.\+h\char`\"{}}\newline
 Include dependency graph for Sistemas\+Lineares.\+c\+:
-% FIG 0
+\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{SistemasLineares_8c__incl}
+\end{center}
+\end{figure}
 \subsection*{Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$ \hyperlink{SistemasLineares_8c_ad84846c03b1d7cdb3e86725335a8d57d}{aloca\+Sist\+Linear} (unsigned int nx, unsigned int ny)
 \begin{DoxyCompactList}\small\item\em Alocação do Sistema Linear Pentadiagonal. \end{DoxyCompactList}\item 
+\hyperlink{structMetrica}{Metrica} $\ast$ \hyperlink{SistemasLineares_8c_a0fa56411c2db5133e91703b6d8ff3b5c}{aloca\+Metrica} (unsigned int nx, unsigned int ny, int max\+Iter)
+\begin{DoxyCompactList}\small\item\em Aloca e inicia a estrutura de dados métrica. \end{DoxyCompactList}\item 
 void \hyperlink{SistemasLineares_8c_a4c76f8fde8fb7cf7848927226cfdab01}{inicializa\+Sist\+Linear} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL, int x, int y)
 \begin{DoxyCompactList}\small\item\em Inicialização do Sistema Linear com zeros. \end{DoxyCompactList}\item 
 void \hyperlink{SistemasLineares_8c_ae7acbfa45287b31c524467ab6d3f77e3}{libera\+Sist\+Linear} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
 \begin{DoxyCompactList}\small\item\em Liberação dos Ponteiros do Sistema Linear. \end{DoxyCompactList}\item 
-int \hyperlink{SistemasLineares_8c_aa8b9986acaa8f53f82eac42362fde8c1}{gauss\+Seidel} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL, int max\+Iter)
-\begin{DoxyCompactList}\small\item\em Método da Gauss-\/\+Seidel. \end{DoxyCompactList}\item 
+int \hyperlink{SistemasLineares_8c_a53fd7846d6ddc652216c50d032ae7f8c}{gauss\+Seidel} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL, int max\+Iter, \hyperlink{structMetrica}{Metrica} $\ast$P)
+\item 
 double \hyperlink{SistemasLineares_8c_a7b3b187094b9ddbf49c4bed5e5f1cda2}{norma\+L2\+Residuo} (\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$SL)
 \begin{DoxyCompactList}\small\item\em Cálculo da Norma\+L2. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
@@ -28,14 +37,31 @@ Jackson Borguezani \& Roberta Tomigian
 
 
 \subsection{Function Documentation}
+\mbox{\Hypertarget{SistemasLineares_8c_a0fa56411c2db5133e91703b6d8ff3b5c}\label{SistemasLineares_8c_a0fa56411c2db5133e91703b6d8ff3b5c}} 
+\index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!aloca\+Metrica@{aloca\+Metrica}}
+\index{aloca\+Metrica@{aloca\+Metrica}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
+\subsubsection{\texorpdfstring{aloca\+Metrica()}{alocaMetrica()}}
+{\footnotesize\ttfamily \hyperlink{structMetrica}{Metrica} $\ast$ aloca\+Metrica (\begin{DoxyParamCaption}\item[{unsigned int}]{nx,  }\item[{unsigned int}]{ny,  }\item[{int}]{max\+Iter }\end{DoxyParamCaption})}
+
+
+
+Aloca e inicia a estrutura de dados métrica. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em nx} & Número de pontos a serem calculados no eixo x\\
+\hline
+{\em ny} & Número de pontos a serem calculados no eixo y\\
+\hline
+{\em max\+Iter} & Número máximo de iterações \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{SistemasLineares_8c_ad84846c03b1d7cdb3e86725335a8d57d}\label{SistemasLineares_8c_ad84846c03b1d7cdb3e86725335a8d57d}} 
 \index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!aloca\+Sist\+Linear@{aloca\+Sist\+Linear}}
 \index{aloca\+Sist\+Linear@{aloca\+Sist\+Linear}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-\subsubsection[{\texorpdfstring{aloca\+Sist\+Linear(unsigned int nx, unsigned int ny)}{alocaSistLinear(unsigned int nx, unsigned int ny)}}]{\setlength{\rightskip}{0pt plus 5cm}{\bf Sist\+Linear\+\_\+t} $\ast$ aloca\+Sist\+Linear (
-\begin{DoxyParamCaption}
-\item[{unsigned int}]{nx, }
-\item[{unsigned int}]{ny}
-\end{DoxyParamCaption}
-)}\hypertarget{SistemasLineares_8c_ad84846c03b1d7cdb3e86725335a8d57d}{}\label{SistemasLineares_8c_ad84846c03b1d7cdb3e86725335a8d57d}
+\subsubsection{\texorpdfstring{aloca\+Sist\+Linear()}{alocaSistLinear()}}
+{\footnotesize\ttfamily \hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$ aloca\+Sist\+Linear (\begin{DoxyParamCaption}\item[{unsigned int}]{nx,  }\item[{unsigned int}]{ny }\end{DoxyParamCaption})}
+
 
 
 Alocação do Sistema Linear Pentadiagonal. 
@@ -47,40 +73,18 @@ Alocação do Sistema Linear Pentadiagonal.
 {\em ny} & Número de pontos a serem calculados no eixo y\\
 \hline
 \end{DoxyParams}
-Função responsável por alocar dinamicamente os vetores do SL. \index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!gauss\+Seidel@{gauss\+Seidel}}
+Função responsável por alocar dinamicamente os vetores do SL. \mbox{\Hypertarget{SistemasLineares_8c_a53fd7846d6ddc652216c50d032ae7f8c}\label{SistemasLineares_8c_a53fd7846d6ddc652216c50d032ae7f8c}} 
+\index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!gauss\+Seidel@{gauss\+Seidel}}
 \index{gauss\+Seidel@{gauss\+Seidel}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-\subsubsection[{\texorpdfstring{gauss\+Seidel(\+Sist\+Linear\+\_\+t $\ast$\+S\+L, int max\+Iter)}{gaussSeidel(SistLinear_t *SL, int maxIter)}}]{\setlength{\rightskip}{0pt plus 5cm}int gauss\+Seidel (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL, }
-\item[{int}]{max\+Iter}
-\end{DoxyParamCaption}
-)}\hypertarget{SistemasLineares_8c_aa8b9986acaa8f53f82eac42362fde8c1}{}\label{SistemasLineares_8c_aa8b9986acaa8f53f82eac42362fde8c1}
+\subsubsection{\texorpdfstring{gauss\+Seidel()}{gaussSeidel()}}
+{\footnotesize\ttfamily int gauss\+Seidel (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL,  }\item[{int}]{max\+Iter,  }\item[{\hyperlink{structMetrica}{Metrica} $\ast$}]{P }\end{DoxyParamCaption})}
 
-
-Método da Gauss-\/\+Seidel. 
-
-
-\begin{DoxyParams}{Parameters}
-{\em SL} & Ponteiro do Sistema Linear\\
-\hline
-{\em max\+Iter} & Número máximo de iterações\\
-\hline
-\end{DoxyParams}
-Esta função calcula a solução de um sistema linear pentadiagonal, com estrutura de dados em vetores.
-
-Erros possíveis no metodo de Gauss-\/\+Seidel
-
-· Erro (-\/1) D\+I\+V\+I\+S\+A\+O\+\_\+\+P\+O\+R\+\_\+0\+: Caso a diagonal principal seja zero, não é possível calcular a solução pois teremos uma divisao por 0
-
-· Erro (-\/2) A\+T\+I\+N\+G\+I\+U\+\_\+\+M\+A\+X\+\_\+\+I\+T\+E\+R\+A\+C\+O\+ES\+: Ocorre quando o número máximo de iterações, passado por parâmetro, é atingido \index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!inicializa\+Sist\+Linear@{inicializa\+Sist\+Linear}}
+\mbox{\Hypertarget{SistemasLineares_8c_a4c76f8fde8fb7cf7848927226cfdab01}\label{SistemasLineares_8c_a4c76f8fde8fb7cf7848927226cfdab01}} 
+\index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!inicializa\+Sist\+Linear@{inicializa\+Sist\+Linear}}
 \index{inicializa\+Sist\+Linear@{inicializa\+Sist\+Linear}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-\subsubsection[{\texorpdfstring{inicializa\+Sist\+Linear(\+Sist\+Linear\+\_\+t $\ast$\+S\+L, int x, int y)}{inicializaSistLinear(SistLinear_t *SL, int x, int y)}}]{\setlength{\rightskip}{0pt plus 5cm}void inicializa\+Sist\+Linear (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL, }
-\item[{int}]{x, }
-\item[{int}]{y}
-\end{DoxyParamCaption}
-)}\hypertarget{SistemasLineares_8c_a4c76f8fde8fb7cf7848927226cfdab01}{}\label{SistemasLineares_8c_a4c76f8fde8fb7cf7848927226cfdab01}
+\subsubsection{\texorpdfstring{inicializa\+Sist\+Linear()}{inicializaSistLinear()}}
+{\footnotesize\ttfamily void inicializa\+Sist\+Linear (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL,  }\item[{int}]{x,  }\item[{int}]{y }\end{DoxyParamCaption})}
+
 
 
 Inicialização do Sistema Linear com zeros. 
@@ -94,13 +98,12 @@ Inicialização do Sistema Linear com zeros.
 {\em y} & Número de pontos a serem calculados no eixo y \\
 \hline
 \end{DoxyParams}
+\mbox{\Hypertarget{SistemasLineares_8c_ae7acbfa45287b31c524467ab6d3f77e3}\label{SistemasLineares_8c_ae7acbfa45287b31c524467ab6d3f77e3}} 
 \index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!libera\+Sist\+Linear@{libera\+Sist\+Linear}}
 \index{libera\+Sist\+Linear@{libera\+Sist\+Linear}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-\subsubsection[{\texorpdfstring{libera\+Sist\+Linear(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{liberaSistLinear(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}void libera\+Sist\+Linear (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
-\end{DoxyParamCaption}
-)}\hypertarget{SistemasLineares_8c_ae7acbfa45287b31c524467ab6d3f77e3}{}\label{SistemasLineares_8c_ae7acbfa45287b31c524467ab6d3f77e3}
+\subsubsection{\texorpdfstring{libera\+Sist\+Linear()}{liberaSistLinear()}}
+{\footnotesize\ttfamily void libera\+Sist\+Linear (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL }\end{DoxyParamCaption})}
+
 
 
 Liberação dos Ponteiros do Sistema Linear. 
@@ -110,13 +113,12 @@ Liberação dos Ponteiros do Sistema Linear.
 {\em SL} & Ponteiro do Sistema Linear\\
 \hline
 \end{DoxyParams}
-A função libera todos os ponteiros da estrutura do Sistema Linear. \index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!norma\+L2\+Residuo@{norma\+L2\+Residuo}}
+A função libera todos os ponteiros da estrutura do Sistema Linear. \mbox{\Hypertarget{SistemasLineares_8c_a7b3b187094b9ddbf49c4bed5e5f1cda2}\label{SistemasLineares_8c_a7b3b187094b9ddbf49c4bed5e5f1cda2}} 
+\index{Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}!norma\+L2\+Residuo@{norma\+L2\+Residuo}}
 \index{norma\+L2\+Residuo@{norma\+L2\+Residuo}!Sistemas\+Lineares.\+c@{Sistemas\+Lineares.\+c}}
-\subsubsection[{\texorpdfstring{norma\+L2\+Residuo(\+Sist\+Linear\+\_\+t $\ast$\+S\+L)}{normaL2Residuo(SistLinear_t *SL)}}]{\setlength{\rightskip}{0pt plus 5cm}double norma\+L2\+Residuo (
-\begin{DoxyParamCaption}
-\item[{{\bf Sist\+Linear\+\_\+t} $\ast$}]{SL}
-\end{DoxyParamCaption}
-)}\hypertarget{SistemasLineares_8c_a7b3b187094b9ddbf49c4bed5e5f1cda2}{}\label{SistemasLineares_8c_a7b3b187094b9ddbf49c4bed5e5f1cda2}
+\subsubsection{\texorpdfstring{norma\+L2\+Residuo()}{normaL2Residuo()}}
+{\footnotesize\ttfamily double norma\+L2\+Residuo (\begin{DoxyParamCaption}\item[{\hyperlink{structSistLinear__t}{Sist\+Linear\+\_\+t} $\ast$}]{SL }\end{DoxyParamCaption})}
+
 
 
 Cálculo da Norma\+L2. 

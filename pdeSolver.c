@@ -27,40 +27,130 @@
 #define fronteira_d 0
 #define fronteira_e 0
 
+/*!
+	\fn real_t quadrado(real_t p)
+	*
+	\brief Função que calcula o quadrado de um número
+	*
+	\param p: o valor a ser calculado
+	*
+*/
+
 real_t quadrado(real_t p)
 {
     return p*p;
 }
+
+/*!
+	\fn real_t gera_d_principal(real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado)
+	*
+	\brief Função que retorna a fórmula usada no calculo dos coeficientes da diagonal principal
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado 
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+    *
+	\param pi_quadrado: o valor de pi ao quadrado
+*/
+
 real_t gera_d_principal(real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado)
 {
 
     return 4 * hy_quadrado + 4 * hx_quadrado + 8 * pi_quadrado * hx_quadrado* hy_quadrado;
 }
 
+/*!
+	\fn real_t gera_d_superior(real_t hx, real_t hy_quadrado)
+	*
+	\brief Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior
+	*
+	\param hx: Deslocamento no eixo x 
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+*/
+
 real_t gera_d_superior(real_t hx, real_t hy_quadrado)
 {
     return hx * hy_quadrado - 2 * hy_quadrado;
 }
+
+/*!
+	\fn real_t gera_d_inferior(real_t hx, real_t hy_quadrado)
+	*
+	\brief Função que retorna a fórmula usada no calculo dos coeficientes da diagonal inferior
+	*
+	\param hx: Deslocamento no eixo x 
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+*/
 
 real_t gera_d_inferior(real_t hx, real_t hy_quadrado)
 {
     return -(2 * hy_quadrado) - hx * hy_quadrado;
 }
 
+/*!
+	\fn real_t gera_ds_afastada(real_t hx_quadrado, real_t hy)
+	*
+	\brief Função que retorna a fórmula usada no calculo dos coeficientes da diagonal superior afastada
+	*
+	\param hy: Deslocamento no eixo y  
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado 
+*/
+
 real_t gera_ds_afastada(real_t hx_quadrado, real_t hy)
 {
     return hx_quadrado * hy - 2 * hx_quadrado;
 }
+
+/*!
+	\fn real_t gera_ds_afastada(real_t hx_quadrado, real_t hy)
+	*
+	\brief Função que retorna a fórmula usada no calculo dos coeficientes da diagonal inferior afastada
+	*
+	\param hy: Deslocamento no eixo y  
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado 
+*/
 
 real_t gera_di_afastada(real_t hx_quadrado, real_t hy)
 {
     return -2 * hx_quadrado - hx_quadrado * hy;
 }
 
+/*!
+	\fn real_t funcao_f(int i, int j, real_t pi_quadrado)
+	*
+	\brief Função que retorna a fórmula usada no calculo da função principal
+	*
+	\param i: o valor de i 
+	*
+	\param j: o valor de j 
+	*
+	\param pi_quadrado: o valor de pi_quadrado ao quadrado 
+*/
+
 real_t funcao_f(int i, int j, real_t pi_quadrado)
 {
     return (4 * pi_quadrado * (sin(2 * M_PI * i) * sinh(M_PI * j) + sin(2 * M_PI * (M_PI - i)) * sinh(M_PI * (M_PI - j))));
 }
+
+/*!
+	\fn real_t b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado)
+	*
+	\brief Função que retorna o calculo da função das constantes nos termos independentes de b
+	*
+	\param i: o valor de i 
+	*
+	\param j: o valor de j 
+	*
+	\param pi_quadrado: o valor de pi_quadrado ao quadrado 
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado  
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+*/
 
 real_t b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado)
 {
@@ -70,20 +160,68 @@ real_t b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t 
 
 }
 
+/*!
+	\fn real_t b_limite_superior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado)
+	*
+	\brief Função que retorna o calculo da função das constantes dos termos independentes de b no limite superior
+	*
+	\param i: o valor de i 
+	*
+	\param pi_quadrado: o valor de pi_quadrado ao quadrado 
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado 
+	*
+	\param hy: Deslocamento no eixo y   
+*/
+
 real_t b_limite_superior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado)
 {
     return (hx_quadrado * hy - 2 * hx_quadrado) * sin(2 * M_PI * i) * sinh(pi_quadrado);
 }
+
+/*!
+	\fn real_t b_limite_superior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado)
+	*
+	\brief Função que retorna o calculo da função das constantes dos termos independentes de b no limite inferior
+	*
+	\param i: o valor de i 
+	*
+	\param pi_quadrado: o valor de pi_quadrado ao quadrado 
+	*
+	\param hx_quadrado: Deslocamento no eixo x ao quadrado  
+	*
+	\param hy: Deslocamento no eixo y  
+*/
 
 real_t b_limite_inferior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado)
 {
     return (-2 * hx_quadrado - hx_quadrado * hy) * sin(2 * M_PI * (M_PI - i)) * sinh(pi_quadrado);
 }
 
+/*!
+	\fn real_t b_limite_esquerda(real_t hx, real_t hy_quadrado)
+	*
+	\brief Função que retorna o calculo da função das constantes dos termos independentes de b no limite à esquerda
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+	*
+	\param hx: Deslocamento no eixo x
+*/
+
 real_t b_limite_esquerda(real_t hx, real_t hy_quadrado)
 {
     return (-2 * hy_quadrado - hx * hy_quadrado) * fronteira_e;
 }
+
+/*!
+	\fn real_t b_limite_direita(real_t hx, real_t hy_quadrado)
+	*
+	\brief Função que retorna o calculo da função das constantes dos termos independentes de b no limite à direita
+	*
+	\param hy_quadrado: Deslocamento no eixo y ao quadrado 
+	*
+	\param hx: Deslocamento no eixo x
+*/
 
 real_t b_limite_direita(real_t hx, real_t hy_quadrado)
 {
@@ -183,9 +321,9 @@ void gera_vetor_b(SistLinear_t *SL)
 	*
 	\param ny: Número de pontos a serem calculados no eixo y
 	*
-	\param hx: 
+	\param hx: Deslocamento no eixo x
 	*
-	\param hy: 
+	\param hy: Deslocamento no eixo y
 	*
 	\param y: Vetor de valores em y
 	*
@@ -195,8 +333,6 @@ void gera_vetor_b(SistLinear_t *SL)
 void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
 {
     int k=0;
-    //printf("hx: %f\n",hx);
-    //printf("hy: %f\n",hy);
     for(int j = 1; j<=ny;++j)
     { 
         for(int i = 1; i<=nx; ++i)
@@ -206,7 +342,6 @@ void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
             k++;
         }
     }
-    //printf("K: %d\n",k);
 }
 
 /*!
@@ -330,106 +465,18 @@ int main(int argc, char *argv[])
     /*=====================================================================*/
 
     int i, tamLin = SL->nx * SL->ny;
-    printf("\nDP:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->dp[i]);
-    }
-    printf("\n\n");
 
-    printf("\nDS:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->ds[i]);
-    }
-    printf("\n\n");
-
-    printf("\nDI:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->di[i]);
-    }
-    printf("\n\n");
-
-    printf("\nDSA:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->dsa[i]);
-    }
-    printf("\n\n");
-
-    printf("\nDIA:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->dia[i]);
-    }
-    printf("\n\n");
-
-    printf("\nB:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->b[i]);
-    }
-    printf("\n\n");
     /*=========================== Resolve o SL ========================*/
     Metrica *P;
     P = alocaMetrica(x,y,maxIter);
-    printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
 
     int ret = gaussSeidel(SL,maxIter,P);
-    printf("P->norma[1]: %f\nIter: %d\nTempo: %f\n",P->norma[1], P->iter, P->mediaTempo);
 
     /*=========================== Monta saida do programa ========================*/
 
     saida_gnuplot(P,flagArq,arqOut,SL);
 
-
-    //printf("\nX:\n");
-    //for (i = 0; i < tamLin; i++)
-    //{
-    //    printf("%f ", vx[i]);
-    //}
-
-    //printf("\nY:\n");
-    //for (i = 0; i < tamLin; i++)
-    //{
-    //    printf("%f ", vy[i]);
-    //}
-    //printf("\nz:\n");
-    //for (i = 1; i <= tamLin; i++)
-    //{
-    //    printf("%f ", SL->x[i]);
-    //}
-
-
-
-/*
-    printf("\nX:\n");
-    for (i = 1; i <= tamLin; i++)
-    {
-        printf("%.2f ", SL->x[i]);
-    }
-    printf("\n\n");
-    real_t n = normaL2Residuo(SL);
-    printf("Norma L2: %f\n", n);
-*/
-
     /*===================================================================================*/
-
- /*
-  printf("\n--------------------------------------------\n\n");
-
-  printf("#-----------------------------------------\n# Ordem: %d\n", tamLin );
-  printf("# Metodo    , ret, norma    ,  iteracoes, tempo\n#-----------------------------------------\n");
-*/
-    /*double tempo_inicial = timestamp();
-  int ret = gaussSeidel(SL,maxIter);
-  double tempo_final = timestamp();
-
-  double norma = normaL2Residuo(SL);
-/*  
-  printf("Gauss Seidel, Norma: %.6g,Tempo: %.5g, Erro: %d\n", norma, tempo_final-tempo_inicial, ret);
-*/
-    //liberaSistLinear(SL);
+    liberaSistLinear(SL);
     return 0;
 }

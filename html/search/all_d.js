@@ -1,4 +1,9 @@
 var searchData=
 [
-  ['timestamp',['timestamp',['../utils_8c.html#ad1f75d4b6d05731f71dd8fe6ee54bfeb',1,'timestamp(void):&#160;utils.c'],['../utils_8h.html#ad1f75d4b6d05731f71dd8fe6ee54bfeb',1,'timestamp(void):&#160;utils.c']]]
+  ['solução_20discreta_20para_20uma_20equação_20diferencial_20parcial',['Solução Discreta para uma Equação Diferencial Parcial',['../index.html',1,'']]],
+  ['saida_5fgnuplot',['saida_gnuplot',['../pdeSolver_8c.html#a564d058f86f6f90aefe804cd92604512',1,'saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a564d058f86f6f90aefe804cd92604512',1,'saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL):&#160;pdeSolver.c']]],
+  ['sistemaslineares_2ec',['SistemasLineares.c',['../SistemasLineares_8c.html',1,'']]],
+  ['sistemaslineares_2eh',['SistemasLineares.h',['../SistemasLineares_8h.html',1,'']]],
+  ['sistlinear_5ft',['SistLinear_t',['../structSistLinear__t.html',1,'']]],
+  ['solucao',['solucao',['../pdeSolver_8c.html#a7b2dfad9dc1b2ff50aac0731e38faa40',1,'solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a7b2dfad9dc1b2ff50aac0731e38faa40',1,'solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx):&#160;pdeSolver.c']]]
 ];

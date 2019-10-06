@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['inicializasistlinear',['inicializaSistLinear',['../SistemasLineares_8c.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c']]]
+  ['funcao_5ff',['funcao_f',['../pdeSolver_8c.html#a6baa007ee7bf7e4120e7b5d6b645fbdf',1,'funcao_f(int i, int j, real_t pi_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a6baa007ee7bf7e4120e7b5d6b645fbdf',1,'funcao_f(int i, int j, real_t pi_quadrado):&#160;pdeSolver.c']]]
 ];

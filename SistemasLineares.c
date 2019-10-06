@@ -149,6 +149,7 @@ void liberaSistLinear(SistLinear_t *SL)
 	· Erro (-2) ATINGIU_MAX_ITERACOES: Ocorre quando o número máximo de iterações, passado por parâmetro, é atingido
 	*
 */
+
 int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 {
 	int i, j, k, l, tam, nx, ny;
@@ -174,7 +175,7 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 	k = 1;
 	do
 	{
-		//tempo = timestamp();
+		tempo = timestamp();
 		//primeira equação
 		i = 1;
 		if (Dp[i] == 0)
@@ -184,9 +185,7 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 		}
 		xk = (Bi[i] - Ds[i] * Xi[i + 1] - Dsa[i] * Xi[i + nx]) / Dp[i];
 		norma = fabs(xk - Xi[1]);
-		//printf("N prim%d: %.3f\n", i, norma);
 		Xi[i] = xk;
-		//printf("\nN1: %.3f\n",norma);
 
 		//equações centrais
 		for (i = 2; i < tam; ++i)
@@ -207,7 +206,6 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 			diff = fabs(xk - Xi[i]);
 			norma = (diff > norma) ? (diff) : (norma);
 			Xi[i] = xk;
-			//printf("N%d: %.3f\n",i,norma);
 		}
 
 		//ultima equação
@@ -215,20 +213,16 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 		diff = fabs(xk - Xi[i]);
 		norma = (diff > norma) ? (diff) : (norma);
 		Xi[i] = xk;
-		//printf("Nfora: %.3f\n", norma);
 
 		++k;
-		//tempof = timestamp();
-		//tempoFim = tempof - tempo;
-		//somaTempo += tempoFim;
+		tempof = timestamp();
+		tempoFim = tempof - tempo;
+		somaTempo += tempoFim;
 		P->norma[k] = normaL2Residuo(SL);
 
-	} while (k < maxIter && norma > EPS);
-	//printf("K: %d\n", k);
-	//printf("N fim: %.3f\n", norma);
+	} while (k < maxIter);
 	P->mediaTempo = somaTempo / k;
 	P->iter = k;
-	//printf("Tempo média: %f\n",mTempo );
 
 	if (k >= maxIter)
 	{
@@ -273,7 +267,6 @@ double normaL2Residuo(SistLinear_t *SL)
 	//primeira equação
 	i = 1;
 	R[i] = Bi[i] - (Dp[i] * Xi[i] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
-	//printf("\nR1: %.3f\n",R[i]);
 
 	//equações centrais
 	for (i = 2; i < tam; ++i)
@@ -282,17 +275,15 @@ double normaL2Residuo(SistLinear_t *SL)
 			R[i] = Bi[i] - (Dp[i] * Xi[i] + Dia[i] * Xi[i - nx] + Di[i] * Xi[i - 1] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
 		else
 			R[i] = Bi[i] - (Dp[i] * Xi[i] + Di[i] * Xi[i - 1] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
-		//printf("R%d: %.3f\n",i,R[i]);
 	}
 
 	//ultima equação
 	R[i] = Bi[i] - (Dp[i] * Xi[i] + Dia[i] * Xi[i - nx] + Di[i] * Xi[i - 1]);
-	//printf("\nR%d: %.3f\n",i,R[i]);
 
 	real_t soma = 0.0;
 	for (i = 1; i <= tam; ++i)
 		soma += R[i] * R[i];
-	//free(R);
-
+	
+	free(R);
 	return sqrt(soma);
 }

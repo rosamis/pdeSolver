@@ -156,7 +156,7 @@ real_t b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t 
 {
     real_t f = funcao_f(i,j,pi_quadrado);
 
-    return 2 * hx_quadrado * hy_quadrado * f;
+    return 2 * hx_quadrado * hy_quadrado * f; //-------------------------------------------
 
 }
 
@@ -332,14 +332,12 @@ void gera_vetor_b(SistLinear_t *SL)
 */
 void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
 {
-    int k=0;
-    for(int j = 1; j<=ny;++j)
+    for(int j = 0; j<ny;++j)
     { 
-        for(int i = 1; i<=nx; ++i)
+        for(int i = 0; i<nx; ++i)
         {
-            y[k] = hy*j;
-            x[k] = hx*i;
-            k++;
+            y[j] = hy*j;
+            x[i] = hx*i;
         }
     }
 }
@@ -356,14 +354,20 @@ void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx)
 	\details Essa função gera vetor de dimensão nx*ny
 	*
 */
-real_t* aloca_vetor(int nx, int ny)
+real_t* aloca_vetor(int nx, int ny, int flag)
 {
-    int t = nx*ny;
+	int t;
+	if (flag)
+		t = nx;
+	else 
+		t = ny;
+		
 	real_t *v = (real_t*)malloc(t * sizeof(real_t));
 	
 	if(v)
 		for(int i = 0; i < t; ++i)
 			v[i] = 0.0;
+	
 	return v;
 }
 
@@ -383,9 +387,10 @@ void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
 {
     real_t hx = M_PI / SL->nx;
     real_t hy = M_PI / SL->ny;
-    real_t *vx = aloca_vetor(SL->nx,SL->ny);
-    real_t *vy = aloca_vetor(SL->nx,SL->ny);
+    real_t *vx = aloca_vetor(SL->nx,SL->ny,1);
+    real_t *vy = aloca_vetor(SL->nx,SL->ny,0);
     solucao(hx,hy,vx,vy,SL->ny,SL->nx);
+
     FILE* fp;
     if(flagArq)
     {
@@ -406,8 +411,11 @@ void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
     fprintf(fp,"#\n");
     fprintf(fp,"###########\n");
 
-    for (int i=0;i<SL->nx*SL->ny;i++){
-        fprintf(fp, "%f %f %f\n",vx[i],vy[i],SL->x[i+1]);
+    for (int i=0;i<SL->nx;i++){
+		for(int j=0; j<SL->ny;j++){
+			fprintf(fp, "%f %f %f\n",vx[j],vy[i],SL->x[j+i+1]);
+	}
+        
     }
 
     fclose(fp);   
@@ -480,3 +488,4 @@ int main(int argc, char *argv[])
     liberaSistLinear(SL);
     return 0;
 }
+

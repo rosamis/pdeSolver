@@ -220,7 +220,7 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 		somaTempo += tempoFim;
 		P->norma[k] = normaL2Residuo(SL);
 
-	} while (k < maxIter);
+	} while (k < maxIter && norma>EPS);
 	P->mediaTempo = somaTempo / k;
 	P->iter = k;
 

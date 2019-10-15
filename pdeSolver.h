@@ -32,7 +32,7 @@ void gera_vetor_b(SistLinear_t * SL);
 
 /*================================= Funções que geram a solução da equação =================================*/
 void solucao(real_t hx, real_t hy, real_t *x, real_t *y, int ny, int nx);
-real_t* aloca_vetor(int nx, int ny);
+real_t* aloca_vetor(int nx, int ny, int flag);
 
 /*================================== Funções que geram a saída da solução ==================================*/
 void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t * SL);

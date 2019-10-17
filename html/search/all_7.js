@@ -1,4 +1,5 @@
 var searchData=
 [
-  ['liberasistlinear',['liberaSistLinear',['../SistemasLineares_8c.html#ae7acbfa45287b31c524467ab6d3f77e3',1,'liberaSistLinear(SistLinear_t *SL):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#ae7acbfa45287b31c524467ab6d3f77e3',1,'liberaSistLinear(SistLinear_t *SL):&#160;SistemasLineares.c']]]
+  ['inicializasistlinear',['inicializaSistLinear',['../SistemasLineares_8c.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#a4c76f8fde8fb7cf7848927226cfdab01',1,'inicializaSistLinear(SistLinear_t *SL, int x, int y):&#160;SistemasLineares.c']]],
+  ['iter',['iter',['../structMetrica.html#a3cdc8f8c5ed005c8f6788d9b33831cc1',1,'Metrica']]]
 ];

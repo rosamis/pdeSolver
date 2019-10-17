@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['main',['main',['../pdeSolver_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'pdeSolver.c']]]
+  ['normal2residuo',['normaL2Residuo',['../SistemasLineares_8c.html#a7b3b187094b9ddbf49c4bed5e5f1cda2',1,'normaL2Residuo(SistLinear_t *SL):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#a7b3b187094b9ddbf49c4bed5e5f1cda2',1,'normaL2Residuo(SistLinear_t *SL):&#160;SistemasLineares.c']]]
 ];

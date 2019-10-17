@@ -1,9 +1,4 @@
 var searchData=
 [
-  ['b',['b',['../structSistLinear__t.html#a5f554632eec68e5e0dbea0058c9657ac',1,'SistLinear_t']]],
-  ['b_5flimite_5fdireita',['b_limite_direita',['../pdeSolver_8c.html#afbc1ac13d37824ea86eecf48e994d191',1,'b_limite_direita(real_t hx, real_t hy_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#afbc1ac13d37824ea86eecf48e994d191',1,'b_limite_direita(real_t hx, real_t hy_quadrado):&#160;pdeSolver.c']]],
-  ['b_5flimite_5fesquerda',['b_limite_esquerda',['../pdeSolver_8c.html#ad17bead63455b80544cdd007eb403412',1,'b_limite_esquerda(real_t hx, real_t hy_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#ad17bead63455b80544cdd007eb403412',1,'b_limite_esquerda(real_t hx, real_t hy_quadrado):&#160;pdeSolver.c']]],
-  ['b_5flimite_5finferior',['b_limite_inferior',['../pdeSolver_8c.html#ac7c963004dc30bdf5b32756de817f28a',1,'b_limite_inferior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#ac7c963004dc30bdf5b32756de817f28a',1,'b_limite_inferior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado):&#160;pdeSolver.c']]],
-  ['b_5flimite_5fsuperior',['b_limite_superior',['../pdeSolver_8c.html#a02c765de585c55cb47bd611789a5ab5b',1,'b_limite_superior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a02c765de585c55cb47bd611789a5ab5b',1,'b_limite_superior(real_t hx_quadrado, real_t hy, int i, real_t pi_quadrado):&#160;pdeSolver.c']]],
-  ['b_5fprincipal',['b_principal',['../pdeSolver_8c.html#a889ed1fd5fcb065e1169b88bfa889f0d',1,'b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a889ed1fd5fcb065e1169b88bfa889f0d',1,'b_principal(int i, int j, real_t hx_quadrado, real_t hy_quadrado, real_t pi_quadrado):&#160;pdeSolver.c']]]
+  ['b',['b',['../structSistLinear__t.html#a5f554632eec68e5e0dbea0058c9657ac',1,'SistLinear_t']]]
 ];

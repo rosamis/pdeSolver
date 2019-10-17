@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['normal2residuo',['normaL2Residuo',['../SistemasLineares_8c.html#a7b3b187094b9ddbf49c4bed5e5f1cda2',1,'normaL2Residuo(SistLinear_t *SL):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#a7b3b187094b9ddbf49c4bed5e5f1cda2',1,'normaL2Residuo(SistLinear_t *SL):&#160;SistemasLineares.c']]]
+  ['saida_5fgnuplot',['saida_gnuplot',['../pdeSolver_8c.html#a564d058f86f6f90aefe804cd92604512',1,'saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL):&#160;pdeSolver.c'],['../pdeSolver_8h.html#a564d058f86f6f90aefe804cd92604512',1,'saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL):&#160;pdeSolver.c']]]
 ];

@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['liberasistlinear',['liberaSistLinear',['../SistemasLineares_8c.html#ae7acbfa45287b31c524467ab6d3f77e3',1,'liberaSistLinear(SistLinear_t *SL):&#160;SistemasLineares.c'],['../SistemasLineares_8h.html#ae7acbfa45287b31c524467ab6d3f77e3',1,'liberaSistLinear(SistLinear_t *SL):&#160;SistemasLineares.c']]]
+  ['main',['main',['../pdeSolver_8c.html#a0ddf1224851353fc92bfbff6f499fa97',1,'pdeSolver.c']]]
 ];

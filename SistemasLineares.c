@@ -15,6 +15,7 @@
 #include <stdlib.h>
 #include "SistemasLineares.h"
 #include "utils.h"
+#include "pdeSolver.h"
 
 /*!
 	\fn SistLinear_t *alocaSistLinear(unsigned int nx, unsigned int ny)
@@ -31,17 +32,11 @@
 SistLinear_t *alocaSistLinear(unsigned int nx, unsigned int ny)
 {
 	SistLinear_t *SL = (SistLinear_t *)malloc(sizeof(SistLinear_t));
-	int t = nx * ny;
 	if (SL)
 	{
-		SL->dp = (real_t *)malloc(t * sizeof(real_t));
-		SL->di = (real_t *)malloc(t * sizeof(real_t));
-		SL->ds = (real_t *)malloc(t * sizeof(real_t));
-		SL->dia = (real_t *)malloc(t * sizeof(real_t));
-		SL->dsa = (real_t *)malloc(t * sizeof(real_t));
-		SL->b = (real_t *)malloc((t + 1) * sizeof(real_t));
-		SL->x = (real_t *)malloc((t + 1) * sizeof(real_t));
-		if (!(SL->dp) || !(SL->b) || !(SL->x) || !(SL->di) || !(SL->dia) || !(SL->dsa) || !(SL->ds))
+		SL->b = (real_t *)malloc(((nx+2)*(ny+2)) * sizeof(real_t));
+		SL->x = (real_t *)malloc(((nx+2)*(ny+2)) * sizeof(real_t));
+		if (!(SL->b) || !(SL->x))
 		{
 			liberaSistLinear(SL);
 		}
@@ -94,17 +89,12 @@ void inicializaSistLinear(SistLinear_t *SL, int x, int y)
 {
 	SL->nx = x;
 	SL->ny = y;
-	int tam = x * y;
+	int tam = (x+2) * (y+2);
 	for (unsigned int i = 0; i < tam; ++i)
 	{
-		SL->dp[i] = 0.0;
-		SL->ds[i] = 0.0;
-		SL->di[i] = 0.0;
-		SL->dia[i] = 0.0;
-		SL->dsa[i] = 0.0;
 		SL->b[i] = 0.0;
-		SL->x[i] = 0.0;
 	}
+	return;
 }
 
 /*!
@@ -119,14 +109,10 @@ void inicializaSistLinear(SistLinear_t *SL, int x, int y)
 */
 void liberaSistLinear(SistLinear_t *SL)
 {
-	free(SL->dp);
-	free(SL->ds);
-	free(SL->di);
-	free(SL->dia);
-	free(SL->dsa);
 	free(SL->b);
 	free(SL->x);
 	free(SL);
+	return;
 }
 
 /*!
@@ -153,72 +139,42 @@ void liberaSistLinear(SistLinear_t *SL)
 int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 {
 	int i, j, k, l, tam, nx, ny;
-	real_t xk, *Xi, *Bi, *Dp, *Di, *Ds, *Dia, *Dsa, somatorio, norma, diff, normaL2;
+	real_t xk, *Xi, norma, diff, normaL2;
 
 	nx = SL->nx;
 	ny = SL->ny;
 
-	Dp = SL->dp;
-	Di = SL->di;
-	Ds = SL->ds;
-	Dia = SL->dia;
-	Dsa = SL->dsa;
 	Xi = SL->x;
-	Bi = SL->b;
-	tam = SL->nx * SL->ny;
 
 	double tempo = 0.0;
 	double tempof = 0.0;
 	double tempoFim = 0.0;
 	double somaTempo = 0.0;
 
+	contorno_x(SL);
 	k = 1;
 	do
 	{
 		tempo = timestamp();
 		//primeira equação
-		i = 1;
-		if (Dp[i] == 0)
-		{
-			fprintf(stderr, "Erro (-1)\n");
-			return -1;
-		}
-		xk = (Bi[i] - Ds[i] * Xi[i + 1] - Dsa[i] * Xi[i + nx]) / Dp[i];
-		norma = fabs(xk - Xi[1]);
-		Xi[i] = xk;
+		for(unsigned int i = 1; i < (nx+1); ++i){
+			for(unsigned int j = 1; j < (ny+1); ++j){
+				xk = SL->b[(i*(ny+2)) + j];
+				xk -= ((SL->di) * Xi[(i*(ny+2)) + j - 1]);
+				xk -= ((SL->dia) * Xi[((i-1)*(ny+2)) + j]);
+				xk -= ((SL->ds) * Xi[(i*(ny+2)) + j + 1]);
+				xk -= ((SL->dsa) * Xi[((i+1)*(ny+2)) + j]);
+				xk /= (SL->dp);
 
-		//equações centrais
-		for (i = 2; i < tam; ++i)
-		{
-			if (Dp[i] == 0)
-			{
-				fprintf(stderr, "Erro (-1)\n");
-				return -1;
+				Xi[(i*(ny+2)) + j] = xk;
 			}
-			if (i > nx)
-			{
-				xk = (Bi[i] - Dia[i] * Xi[i - nx] - Di[i] * Xi[i - 1] - Ds[i] * Xi[i + 1] - Dsa[i] * Xi[i + nx]) / Dp[i];
-			}
-			else
-			{
-				xk = (Bi[i] - Di[i] * Xi[i - 1] - Ds[i] * Xi[i + 1] - Dsa[i] * Xi[i + nx]) / Dp[i];
-			}
-			diff = fabs(xk - Xi[i]);
-			norma = (diff > norma) ? (diff) : (norma);
-			Xi[i] = xk;
 		}
-
-		//ultima equação
-		xk = (Bi[i] - Dia[i] * Xi[i - nx] - Di[i] * Xi[i - 1]) / Dp[i];
-		diff = fabs(xk - Xi[i]);
-		norma = (diff > norma) ? (diff) : (norma);
-		Xi[i] = xk;
 
 		++k;
 		tempof = timestamp();
 		tempoFim = tempof - tempo;
 		somaTempo += tempoFim;
-		P->norma[k] = normaL2Residuo(SL);
+		//P->norma[k] = normaL2Residuo(SL);
 
 	} while (k < maxIter && norma>EPS);
 	P->mediaTempo = somaTempo / k;
@@ -246,7 +202,7 @@ double normaL2Residuo(SistLinear_t *SL)
 	real_t *R;
 
 	int i, j, k, l, tam, nx, ny;
-	real_t xk, *Xk1, *Xi, *Bi, *Dp, *Di, *Ds, *Dia, *Dsa, somatorio, norma, diff;
+	real_t xk, *Xk1, *Xi, *Bi, Dp, Di, Ds, Dia, Dsa, somatorio, norma, diff;
 
 	nx = SL->nx;
 	ny = SL->ny;
@@ -266,19 +222,19 @@ double normaL2Residuo(SistLinear_t *SL)
 		R[i] = 0.0;
 	//primeira equação
 	i = 1;
-	R[i] = Bi[i] - (Dp[i] * Xi[i] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
+	R[i] = Bi[i] - (Dp * Xi[i] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
 
 	//equações centrais
 	for (i = 2; i < tam; ++i)
 	{
 		if (i > nx)
-			R[i] = Bi[i] - (Dp[i] * Xi[i] + Dia[i] * Xi[i - nx] + Di[i] * Xi[i - 1] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
+			R[i] = Bi[i] - (Dp * Xi[i] + Dia * Xi[i - nx] + Di * Xi[i - 1] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
 		else
-			R[i] = Bi[i] - (Dp[i] * Xi[i] + Di[i] * Xi[i - 1] + Ds[i] * Xi[i + 1] + Dsa[i] * Xi[i + nx]);
+			R[i] = Bi[i] - (Dp * Xi[i] + Di * Xi[i - 1] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
 	}
 
 	//ultima equação
-	R[i] = Bi[i] - (Dp[i] * Xi[i] + Dia[i] * Xi[i - nx] + Di[i] * Xi[i - 1]);
+	R[i] = Bi[i] - (Dp * Xi[i] + Dia * Xi[i - nx] + Di * Xi[i - 1]);
 
 	real_t soma = 0.0;
 	for (i = 1; i <= tam; ++i)

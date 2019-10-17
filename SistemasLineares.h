@@ -25,11 +25,11 @@ typedef double real_t;
     \brief Estrutura de dados do Sistema Linear Pentadiagonal
 */
 typedef struct {
-  real_t *dp; /**< Vetor da diagonal principal. */
-  real_t *ds; /**< Vetor da diagonal superior. */
-  real_t *di; /**< Vetor da diagonal inferior. */
-  real_t *dia; /**< Vetor da diagonal inferior afastada. */
-  real_t *dsa; /**< Vetor da diagonal superior afastada. */
+  real_t dp; /**< Vetor da diagonal principal. */
+  real_t ds; /**< Vetor da diagonal superior. */
+  real_t di; /**< Vetor da diagonal inferior. */
+  real_t dia; /**< Vetor da diagonal inferior afastada. */
+  real_t dsa; /**< Vetor da diagonal superior afastada. */
   real_t *b; /**< Vetor de termos independentes. */
   real_t *x; /**< Vetor solução. */
   unsigned int nx; /**< Quantidade de pontos em x. */

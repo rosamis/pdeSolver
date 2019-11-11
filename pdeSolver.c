@@ -1,13 +1,13 @@
 /**
  * \file pdeSolver.c
  * \author Jackson Borguezani & Roberta Tomigian
- * \mainpage Solução Discreta para uma Equação Diferencial Parcial
+ * \mainpage Solução Discreta para uma Equação Diferencial Parcial de Duas Variáveis
  * \section introSec ReadMe
  * Dada uma Equação Diferencial Parcial com duas variáveis independentes, discretizamos a malha utilizando Diferenças Finitas Centrais e o método de Gauss-Seidel para encontrar a possível solução do Sistema Linear. 
  *
  * \brief **Introdução à Computação Científica CI1164** \n Trabalho 1 -- Prof. Armando Nicolui \n **Alunos :** \n Jackson Rossi Borguezani GRR20176573 \n Roberta Tomigian GRR20171631
  * 
- * \date 03 out 2019
+ * \date 22 out 2019
  *
  */
 
@@ -21,11 +21,18 @@
 #include "SistemasLineares.h"
 #include "pdeSolver.h"
 #include <getopt.h>
+#include <likwid.h>
+
+
 
 
 #define M_PI 3.14159265358979323846
 #define fronteira_d 0
 #define fronteira_e 0
+
+//#define GaussSeidel
+
+//restrict 
 
 /*!
 	\fn void gera_matriz(SistLinear_t *SL)
@@ -45,16 +52,16 @@ void gera_matriz(SistLinear_t *SL)
 	// Diagonal Principal
 	SL->dp = ((4*M_PI*M_PI)+(2/(hx*hx))+(2/(hy*hy)));
 
-	// Diagonal Superior y
+	// Diagonal Superior 
 	SL->ds = -((1/(hy*hy)) - (1/(2*hy)));
 
-	// Diagonal Inferior y
+	// Diagonal Inferior 
 	SL->di = -((1/(hx*hx)) + (1/(2*hx)));
 
-	// Diagonal Superior Afastada x
+	// Diagonal Superior Afastada 
 	SL->dsa = -((1/(hx*hx)) - (1/(2*hx)));
 
-	// Diagonal Inferior Afastada x
+	// Diagonal Inferior Afastada 
 	SL->dia = -((1/(hy*hy)) + (1/(2*hy)));
 	return;
 }
@@ -75,8 +82,6 @@ void gera_vetor_b(SistLinear_t *SL)
     real_t hy = M_PI / (SL->ny+1);  
 	real_t x = 0.0;
 	real_t y = 0.0;
-	// inicializa vetor x com condições de contorno
-	// no b não considera
 
     for (int i = 0; i < (SL->nx+2); ++i, x += hx)
     {
@@ -89,6 +94,14 @@ void gera_vetor_b(SistLinear_t *SL)
 	return;
 }
 
+/*!
+    \fn void contorno_x(SistLinear_t *SL)
+    *
+    \brief Monta o vetor X com as constantes correspondentes da discretização
+    *
+    \param SL: Sistema Linear
+    *
+*/
 void contorno_x(SistLinear_t *SL){
     real_t hx = M_PI / (SL->nx+1);
     real_t hy = M_PI / (SL->ny+1);	
@@ -113,16 +126,18 @@ void contorno_x(SistLinear_t *SL){
 
 
 /*!
-	\fn void saida_gnuplot(real_t *R, real_t n, int flagArq, char *arqOut, double tempo, int iter)
+	\fn void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
 	*
 	\brief Gera a saída da solução no formato aceito pelo gnuplot
 	*
-	\param nx: Número de pontos a serem calculados no eixo x
+	\param *P: Estrutura que armazena o tempo, número de iterações e o resíduo de cada iteração de Gauss
 	*
-	\param ny: Número de pontos a serem calculados no eixo y
+	\param flagArq: Flag sinalizando se há um arquivo de saída
+    *
+    \param *arqOut: Arquivo de saída (pode ser nulo)
 	*
-	\details Essa função gera vetor de dimensão nx*ny
-	*
+    \param *SL: Sistema Linear
+    *
 */
 void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
 {
@@ -136,7 +151,7 @@ void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
     {
         fp = fopen(arqOut ,"w+");
         if (fp == NULL)
-            printf("Um erro ocorreu ao tentar criar o arquivo.\n");
+            fprintf(stderr, "Um erro ocorreu ao tentar criar o arquivo.\n");
     }else
         fp = stdout;
         
@@ -145,7 +160,7 @@ void saida_gnuplot(Metrica *P, int flagArq, char *arqOut, SistLinear_t *SL)
     fprintf(fp,"#\n");
     fprintf(fp,"# Norma L2 do Residuo\n");
 
-    for (int i=1; i<=P->iter; ++i)
+    for (int i=1; i <= P->iter; ++i)
         fprintf(fp, "# i = %d: %f\n",i,P->norma[i]);
 
     fprintf(fp,"#\n");
@@ -216,15 +231,50 @@ int main(int argc, char *argv[])
     int i, tamLin = SL->nx * SL->ny;
 
     /*=========================== Resolve o SL ========================*/
+    LIKWID_MARKER_INIT;
+
     Metrica *P;
     P = alocaMetrica(x,y,maxIter);
+    //#define gauss
+    #ifdef gauss
+    
+    LIKWID_MARKER_START("Gauss");
     int ret = gaussSeidel(SL,maxIter,P);
+    LIKWID_MARKER_STOP("Gauss");
+    
+    #endif
+
+     #ifdef normaL2
+    int ret = gaussSeidel(SL,maxIter,P);
+    //LIKWID_MARKER_INIT;
+    LIKWID_MARKER_START("norma");
+    double norma = normaL2Residuo(SL);
+    LIKWID_MARKER_STOP("norma");
+    //LIKWID_MARKER_CLOSE;
+    #endif
+
+    double tempo_inicial, tempo_final;
+
+    #ifdef gaussTEMPO
+	tempo_inicial = timestamp();
+	int ret = gaussSeidel(SL,maxIter,P);
+	tempo_final = timestamp();
+	printf("Gauss %g\n",tempo_final - tempo_inicial);
+	#endif
+
+	#ifdef normaL2TEMPO
+	tempo_inicial = timestamp();
+	double norma = normaL2Residuo(SL);
+	tempo_final = timestamp();
+	printf("Norma %g\n",tempo_final - tempo_inicial);
+	#endif
 
     /*=========================== Monta saida do programa ========================*/
     saida_gnuplot(P,flagArq,arqOut,SL);
 
     /*===================================================================================*/
     liberaSistLinear(SL);
+    LIKWID_MARKER_CLOSE;
     return 0;
 }
 

@@ -8,14 +8,14 @@
  * Trabalho 1 | ICC - Prof. Armando Nicolui. |
  * Aluno: Jackson Borguezani GRR20176573 | Roberta Tomigian GRR20171631
  * \brief Arquivo que define as funções e estruturas do sistema linear.
- *\ date 03 out 2019
+ *\ date 22 out 2019
  *
  */
 #include <time.h>
 #include <sys/time.h>
 #include <math.h>
 #include "utils.h"
-#define EPS 1.0e-4
+//#define EPS 1.0e-4
 
 /*============================= Estruturas de Dados =============================*/
 
@@ -25,11 +25,11 @@ typedef double real_t;
     \brief Estrutura de dados do Sistema Linear Pentadiagonal
 */
 typedef struct {
-  real_t dp; /**< Vetor da diagonal principal. */
-  real_t ds; /**< Vetor da diagonal superior. */
-  real_t di; /**< Vetor da diagonal inferior. */
-  real_t dia; /**< Vetor da diagonal inferior afastada. */
-  real_t dsa; /**< Vetor da diagonal superior afastada. */
+  real_t dp; /**< Constante da diagonal principal. */
+  real_t ds; /**< Constante da diagonal superior. */
+  real_t di; /**< Constante da diagonal inferior. */
+  real_t dia; /**< Constante da diagonal inferior afastada. */
+  real_t dsa; /**< Constante da diagonal superior afastada. */
   real_t *b; /**< Vetor de termos independentes. */
   real_t *x; /**< Vetor solução. */
   unsigned int nx; /**< Quantidade de pontos em x. */
@@ -42,7 +42,7 @@ typedef struct {
 typedef struct{
     double *norma; /**< Vetor das normas de cada iteração do Gauss-Seidel */
     double mediaTempo; /**< Média de tempo de cada iteração do Gauss-Seidel */
-    int iter; /**< Quantidade total de iterações feitas no Gauss-Seidel */
+    int iter; /**< Quantidade total de iterações da entrada */
 }Metrica;
 
 /*=========================== Funções do Sistema Linear ===========================*/

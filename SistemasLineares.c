@@ -4,9 +4,9 @@
  * \mainpage Funções de alocação, inicialiazação e resolução de um sistema linear com o Cálculo da NormaL2
  * \section introSec ReadMe
  * Trabalho 1 | ICC - Prof. Armando Nicolui. |
- * Aluno: Jackson Rossi Borguezani GRR20176573.
+ * Aluno: Jackson Rossi Borguezani GRR20176573. \n Roberta Tomigian GRR20171631.
  * \brief Arquivo que define os métodos de calcular uma solução para um sistema linear e calcular a norma do resíduo L2.
- *\ date 03 out 2019
+ *\ date 22 out 2019
  *
  */
 
@@ -128,12 +128,6 @@ void liberaSistLinear(SistLinear_t *SL)
 	*
 	\details Esta função calcula a solução de um sistema linear pentadiagonal, com estrutura de dados em vetores.
 	*
-	\details Erros possíveis no metodo de Gauss-Seidel
-	*
-	· Erro (-1) DIVISAO_POR_0: Caso a diagonal principal seja zero, não é possível calcular a solução pois teremos uma divisao por 0
-	*
-	· Erro (-2) ATINGIU_MAX_ITERACOES: Ocorre quando o número máximo de iterações, passado por parâmetro, é atingido
-	*
 */
 
 int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
@@ -156,7 +150,6 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 	do
 	{
 		tempo = timestamp();
-		//primeira equação
 		for(unsigned int i = 1; i < (nx+1); ++i){
 			for(unsigned int j = 1; j < (ny+1); ++j){
 				xk = SL->b[(i*(ny+2)) + j];
@@ -169,22 +162,14 @@ int gaussSeidel(SistLinear_t *SL, int maxIter, Metrica *P)
 				Xi[(i*(ny+2)) + j] = xk;
 			}
 		}
-
-		++k;
 		tempof = timestamp();
 		tempoFim = tempof - tempo;
 		somaTempo += tempoFim;
-		//P->norma[k] = normaL2Residuo(SL);
-
-	} while (k < maxIter && norma>EPS);
+		P->norma[k] = normaL2Residuo(SL);
+		++k;
+	} while (k <= maxIter);
 	P->mediaTempo = somaTempo / k;
-	P->iter = k;
-
-	if (k >= maxIter)
-	{
-		fprintf(stderr, "Erro (-2)\n");
-		return -2;
-	}
+	P->iter = k-1;
 
 	return 0;
 }
@@ -202,7 +187,7 @@ double normaL2Residuo(SistLinear_t *SL)
 	real_t *R;
 
 	int i, j, k, l, tam, nx, ny;
-	real_t xk, *Xk1, *Xi, *Bi, Dp, Di, Ds, Dia, Dsa, somatorio, norma, diff;
+	real_t *Xi, *Bi, Dp, Di, Ds, Dia, Dsa, somatorio, norma, diff, xk;
 
 	nx = SL->nx;
 	ny = SL->ny;
@@ -214,32 +199,27 @@ double normaL2Residuo(SistLinear_t *SL)
 	Dsa = SL->dsa;
 	Xi = SL->x;
 	Bi = SL->b;
-	tam = SL->nx * SL->ny;
+	tam = (SL->nx + 2) * (SL->ny + 2);
 
 	R = (real_t *)malloc(tam * sizeof(real_t));
-
-	for (unsigned int i = 1; i <= tam; ++i)
+	
+	for (unsigned int i = 0; i < tam; ++i)
 		R[i] = 0.0;
-	//primeira equação
-	i = 1;
-	R[i] = Bi[i] - (Dp * Xi[i] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
-
-	//equações centrais
-	for (i = 2; i < tam; ++i)
-	{
-		if (i > nx)
-			R[i] = Bi[i] - (Dp * Xi[i] + Dia * Xi[i - nx] + Di * Xi[i - 1] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
-		else
-			R[i] = Bi[i] - (Dp * Xi[i] + Di * Xi[i - 1] + Ds * Xi[i + 1] + Dsa * Xi[i + nx]);
-	}
-
-	//ultima equação
-	R[i] = Bi[i] - (Dp * Xi[i] + Dia * Xi[i - nx] + Di * Xi[i - 1]);
 
 	real_t soma = 0.0;
-	for (i = 1; i <= tam; ++i)
-		soma += R[i] * R[i];
-	
+
+	for(unsigned int i = 1; i < (nx+1); ++i){
+		for(unsigned int j = 1; j < (ny+1); ++j){				
+			xk = Bi[(i*(ny+2)) + j];
+			xk -= (Di * Xi[(i*(ny+2)) + j - 1]);				
+			xk -= (Dia * Xi[((i-1)*(ny+2)) + j]);				
+			xk -= (Ds * Xi[(i*(ny+2)) + j + 1]);				
+			xk -= (Dsa * Xi[((i+1)*(ny+2)) + j]);				
+			xk -= (Dp * Xi[(i*(ny+2)) + j]);
+			R[(i*(ny+2)) + j] = xk;
+			soma += xk*xk;
+		}
+	}
 	free(R);
 	return sqrt(soma);
 }

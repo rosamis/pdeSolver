@@ -21,18 +21,11 @@
 #include "SistemasLineares.h"
 #include "pdeSolver.h"
 #include <getopt.h>
-#include <likwid.h>
-
-
 
 
 #define M_PI 3.14159265358979323846
 #define fronteira_d 0
 #define fronteira_e 0
-
-//#define GaussSeidel
-
-//restrict 
 
 /*!
 	\fn void gera_matriz(SistLinear_t *SL)
@@ -231,50 +224,15 @@ int main(int argc, char *argv[])
     int i, tamLin = SL->nx * SL->ny;
 
     /*=========================== Resolve o SL ========================*/
-    LIKWID_MARKER_INIT;
-
     Metrica *P;
     P = alocaMetrica(x,y,maxIter);
-    //#define gauss
-    #ifdef gauss
-    
-    LIKWID_MARKER_START("Gauss");
     int ret = gaussSeidel(SL,maxIter,P);
-    LIKWID_MARKER_STOP("Gauss");
-    
-    #endif
-
-     #ifdef normaL2
-    int ret = gaussSeidel(SL,maxIter,P);
-    //LIKWID_MARKER_INIT;
-    LIKWID_MARKER_START("norma");
-    double norma = normaL2Residuo(SL);
-    LIKWID_MARKER_STOP("norma");
-    //LIKWID_MARKER_CLOSE;
-    #endif
-
-    double tempo_inicial, tempo_final;
-
-    #ifdef gaussTEMPO
-	tempo_inicial = timestamp();
-	int ret = gaussSeidel(SL,maxIter,P);
-	tempo_final = timestamp();
-	printf("Gauss %g\n",tempo_final - tempo_inicial);
-	#endif
-
-	#ifdef normaL2TEMPO
-	tempo_inicial = timestamp();
-	double norma = normaL2Residuo(SL);
-	tempo_final = timestamp();
-	printf("Norma %g\n",tempo_final - tempo_inicial);
-	#endif
 
     /*=========================== Monta saida do programa ========================*/
     saida_gnuplot(P,flagArq,arqOut,SL);
 
     /*===================================================================================*/
     liberaSistLinear(SL);
-    LIKWID_MARKER_CLOSE;
     return 0;
 }
 
